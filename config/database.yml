@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+
+development:
+  <<: *default
+  database: secudevcase1
+
+test:
+  <<: *default
+  database: secudevcase1
+
+production:
+  <<: *default
+  database: secudevcase1

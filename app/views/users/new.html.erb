@@ -1,0 +1,36 @@
+<%= form_for(@user) do |f| %>
+  <%= render 'shared/error_messages' %>
+
+  <%= f.label "First name" %>
+  <%= f.text_field :fname %><br>
+
+  <%= f.label "Last name" %>
+  <%= f.text_field :lname %><br>
+
+  <%= f.label :username %>
+  <%= f.text_field :username %><br>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %><br>
+
+  <%= f.label :gender %>
+  <%= f.select :gender, ['Male', 'Female']%><br>
+
+  <%= f.label :salutation %>
+  <%= f.select :salutation, ['Mr', 'Sir', 'Senior', 'Count', 'Miss', 'Ms', 'Mrs','Madame', 'Majesty', 'Seniora'] %>
+
+  <%= f.label :birthdate %>
+  <%= f.date_select(:birthdate, :order => [:month, :day, :year], start_year: 1950) %><br>
+
+  <% if logged_in? && @current_user.admin? %>
+  <%= f.label "Access level" %>
+  <%= f.select :role, ['user', 'admin']%><br>
+  <% end %>
+
+  <%= f.label :about %>
+  <%= f.text_area :about %><br>
+
+  <%= f.submit "Create account" %>
+<% end %><br>
+
+<%= link_to "Go back", root_url %>
