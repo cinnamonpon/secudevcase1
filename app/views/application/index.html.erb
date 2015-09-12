@@ -18,7 +18,11 @@
     <%= f.submit "Post" %>
   <% end %><br>
 
-  Global Message Boards
+  Global Message Boards<br>
+  <table border="1" style="width:50%">
+    <%= render @posts %>
+
+  </table>
 
 <% else %>
   <%= link_to "Register", new_user_path %>

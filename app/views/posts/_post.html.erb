@@ -1,0 +1,19 @@
+<tr>
+  <td>
+    <%= link_to post.user.fname, post.user %> <br>
+    <%= link_to post.user.username, post.user %> <br>
+    Member since <%= post.user.created_at.strftime("%B %d, %Y") %>
+  <td>
+  <td>
+    Posted <%= post.created_at.strftime("%B %d, %Y") %>
+    <% if @current_user.admin? || @current_user == post.user %>
+      <%= link_to "Edit", edit_post_path(post) %>
+      <%= link_to "Delete", post, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %><br>
+    <%= post.content %>
+    <% if post.updated_at != post.created_at %><br>
+    Updated at <%= post.updated_at.strftime("%B %d, %Y") %>
+    <% end %>
+  </td>
+</tr>
