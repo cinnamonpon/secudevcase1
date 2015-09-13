@@ -1,1 +1,14 @@
-<%= "#{@user.fname} #{@user.lname}" %>
+<%= "#{@user.salutation} #{@user.fname} #{@user.lname}" %><br>
+Username: <%= @user.username %><br>
+<%= @user.gender %>, Born <%= @user.birthdate.strftime("%B %d, %Y") %><br>
+About: <%= @user.about %><br><br>
+
+Posts
+<% if @posts.any? %>
+  <table border="1" style="width:50%">
+    <%= render @posts %>
+  </table>
+  <%= will_paginate @posts %>
+<% else %>
+  <br><br>No posts to show.
+<% end %>

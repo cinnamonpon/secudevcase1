@@ -17,7 +17,7 @@
   <%= f.select :gender, ['Male', 'Female']%><br>
 
   <%= f.label :salutation %>
-  <%= f.select :salutation, ['Mr', 'Sir', 'Senior', 'Count', 'Miss', 'Ms', 'Mrs','Madame', 'Majesty', 'Seniora'] %>
+  <%= f.select :salutation, ['Mr', 'Sir', 'Senior', 'Count'] %>
 
   <%= f.label :birthdate %>
   <%= f.date_select(:birthdate, :order => [:month, :day, :year], start_year: 1950) %><br>
@@ -32,5 +32,3 @@
 
   <%= f.submit "Create account" %>
 <% end %><br>
-
-<%= link_to "Go back", root_url %>

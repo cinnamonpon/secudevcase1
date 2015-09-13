@@ -1,15 +1,8 @@
 <% if logged_in? %>
   Welcome <%= "#{@current_user.salutation} #{@current_user.fname} #{@current_user.lname}" %>!<br>
   Username: <%= @current_user.username %><br>
-  <%= @current_user.gender %>, Born <%= @current_user.birthdate %><br>
+  <%= @current_user.gender %>, Born <%= @current_user.birthdate.strftime("%B %d, %Y") %><br>
   About: <%= @current_user.about %><br><br>
-
-  <% if @current_user.admin? %>
-    <%= link_to "Register new user", new_user_path %>
-  <% end %>
-
-  <%= link_to "Edit Profile", edit_user_path(@current_user) %>
-  <%= link_to "Log out", logout_path, method: :delete %><br><br>
 
   <%= form_for(@post) do |f| %>
     <%= f.label "Post a message: " %>
@@ -20,10 +13,12 @@
 
   Global Message Boards<br>
   <table border="1" style="width:50%">
-    <%= render @posts %>
+
+    <%= render @posts if @posts.any? %>
 
   </table>
 
+    <%= will_paginate @posts %>
 <% else %>
   <%= link_to "Register", new_user_path %>
   <%= link_to "Log in", login_path %>

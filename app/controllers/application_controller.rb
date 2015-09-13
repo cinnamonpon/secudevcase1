@@ -4,11 +4,10 @@ class ApplicationController < ActionController::Base
 
   def index
     @post = Post.new
-    @posts = Post.all
+    @posts = Post.paginate(:page => params[:page])
   end
   protect_from_forgery with: :exception
   include SessionsHelper
-
 
    private
 

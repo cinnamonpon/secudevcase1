@@ -16,10 +16,10 @@ class User < ActiveRecord::Base
   def default_role
     self.role ||= 'user'
     if self.gender == "Male" && !%w(Mr Sir Senior Count).include?(self.salutation)
-        errors.add(:salutation, ": invalid salutation")
+        errors.add(:salutation, "is invalid")
         false
     elsif self.gender == "Female" && !%w(Ms Miss Mrs Madame Majesty Seniora).include?(self.salutation)
-        errors.add(:salutation, ": invalid salutation")
+        errors.add(:salutation, "is invalid")
         false
     end
   end

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	before_action :logged_in_user
-  before_action :correct_user, :admin_user,   only: [:edit, :destroy]
+  before_action :correct_user, :admin_user, only: [:edit, :destroy, :update]
 
   def create
     @post = current_user.posts.build(post_params)
