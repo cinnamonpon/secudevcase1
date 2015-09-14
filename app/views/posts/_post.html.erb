@@ -13,7 +13,7 @@
     <% end %><br>
     <%= sanitize post.content %>
     <% if post.updated_at != post.created_at %><br>
-    Edited <%= post.updated_at.strftime("%B %d, %Y") %>
+      Edited <%= post.updated_at.strftime("%B %d, %Y") %>
     <% end %>
   </td>
 </tr>

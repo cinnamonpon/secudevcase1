@@ -6,10 +6,15 @@ class ApplicationController < ActionController::Base
     @post = Post.new
     @posts = Post.paginate(:page => params[:page])
   end
+
   protect_from_forgery with: :exception
   include SessionsHelper
 
-   private
+  rescue_from ActionController::InvalidAuthenticityToken do |exception|
+    redirect_to root_url
+    flash[:danger] = "Nice try, hacker."
+  end
+  private
 
     # Confirms a logged-in user.
     def logged_in_user
