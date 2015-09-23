@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'application#index'
-  resources :users
-  resources :posts
+  resources :users, except: [:index, :destroy]
+  resources :posts, except: [:index, :new, :show]
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'

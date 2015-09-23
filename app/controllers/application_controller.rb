@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActionController::InvalidAuthenticityToken do |exception|
     redirect_to root_url
-    flash[:danger] = "Nice try, hacker."
+    flash[:danger] = "Unauthorized access. Try again."
   end
   private
 

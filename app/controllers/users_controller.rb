@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update, :show]
   before_action :correct_user, only: [:edit, :update]
 
   def new
@@ -73,7 +73,4 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless current_user == @user
     end
 
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
-    end
 end
