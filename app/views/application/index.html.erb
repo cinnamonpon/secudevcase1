@@ -12,7 +12,11 @@
   <% end %><br>
 
   Global Message Boards<br>
-  
+
+  <%= form_tag '/search' %>
+  <%= search_field_tag :content %>
+  <%= submit_tag "Search" %>
+
   <table border="1" style="width:50%">
 
     <%= render @posts if @posts.any? %>

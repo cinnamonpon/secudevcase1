@@ -12,6 +12,7 @@
     <% if logged_in? %>
       <% if @current_user.admin? %>
         | <%= link_to "Register new user", new_user_path %>
+        | <%= link_to "Backups", backups_path %>
       <% end %>
 
         | <%= link_to "Edit Profile", edit_user_path(@current_user) %>

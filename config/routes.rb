@@ -7,9 +7,13 @@ Rails.application.routes.draw do
   root 'application#index'
   resources :users, except: [:index, :destroy]
   resources :posts, except: [:index, :new, :show]
+  resources :backups, only: [:index, :create] do
+    post 'download'
+  end
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+  post    'search'  => 'application#search'
 
   get "*path" => redirect("/")
 

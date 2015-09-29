@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true, length: { maximum: 50 }, format: { with: VALID_USERNAME_REGEX }
   validates :about, presence: true
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_secure_password
 
   def default_role

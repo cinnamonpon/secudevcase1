@@ -1,0 +1,7 @@
+<%= button_to "Create Backup", action: "create" %><br>
+Backup files<br>
+<ul>
+  <% @files.each do |f| %>
+    <li><%= link_to "#{f.filename}", backup_download_path(f), method: :post %></li>
+  <% end %>
+</ul>

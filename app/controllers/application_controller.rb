@@ -7,6 +7,15 @@ class ApplicationController < ActionController::Base
     @posts = Post.paginate(:page => params[:page])
   end
 
+  def search
+    @posts = Post.find_substring(params[:content])
+    if @posts
+      flash[:success] = "Search results for #{params[:content]}"
+    else
+      flash[:danger] = "No resulst found for #{params[:content]}"
+    end
+  end
+
   protect_from_forgery with: :exception
   include SessionsHelper
 
@@ -15,6 +24,10 @@ class ApplicationController < ActionController::Base
     flash[:danger] = "Unauthorized access. Try again."
   end
   private
+
+    def post_params
+      params.require(:post).permit(:content)
+    end
 
     # Confirms a logged-in user.
     def logged_in_user
