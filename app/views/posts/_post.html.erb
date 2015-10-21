@@ -11,7 +11,7 @@
       <%= link_to "Delete", post, method: :delete,
                                        data: { confirm: "You sure?" } %>
     <% end %><br>
-    <%= sanitize post.content %>
+    <%= safe_join post.content %>
     <% if post.updated_at != post.created_at %><br>
       Edited <%= post.updated_at.strftime("%B %d, %Y") %>
     <% end %>
