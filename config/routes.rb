@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :backups, only: [:index, :create] do
     post 'download'
   end
+  resources :items
+
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'

@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   validates :about, presence: true
 
   has_many :posts, dependent: :destroy
+  has_many :orders, dependent: :destroy
   has_secure_password
 
   def default_role
