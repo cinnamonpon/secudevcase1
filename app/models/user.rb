@@ -13,8 +13,12 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_one  :cart, dependent: :destroy
-  
+
   has_secure_password
+
+  def full_name
+    "#{fname} #{lname}"
+  end
 
   def default_role
     self.role ||= 'user'

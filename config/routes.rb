@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   end
   scope 'store' do
     post 'add_item' => 'cart#add_item'
+    post 'hook'     => 'orders#hook'
+    get 'check_out' => 'cart#check_out'
     get 'view_cart' => 'cart#index'
     resources :store_items, :path => 'items', :as => 'items', only: [:index, :show]
   end

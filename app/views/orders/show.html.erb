@@ -1,0 +1,42 @@
+Order Invoice<br><br>
+
+<table>
+  <tr>
+    <th>Item/s</th>
+    <th>Amount</th>
+  </tr>
+  <% @order.order_items.each do |o| %>
+  <tr>
+    <td>
+      <strong><%= o.store_item.name %></strong><br>
+      Item id: <%= o.store_item.id %><br>
+      Item quantity: <%= o.quantity %>
+    </td>
+    <td><strong> $<%= o.store_item.price * o.quantity %> </strong> </td>
+  </tr>
+  <% end %>
+  <tr>
+    <th>Item total</th>
+    <th>$<%= @order.amount %> </th>
+  </tr>
+
+  <tr>
+    <th>Buyer</th>
+    <td><%= @order.user.full_name %></td>
+  </tr>
+  <tr>
+    <th>Payment status</th>
+      <td><%= @order.status %><br>
+    <% if @order.status != "Completed" %>
+      <%= link_to "Pay now", @order.paypal_url(manage_order_path(@order)) %>
+    <% end %>
+  </tr>
+  <tr>
+    <th>Payment date</th>
+    <td><%= @order.purchased_at %></td>
+  </tr>
+  <tr>
+    <th>Paypal Transaction Identifier</th>
+    <td><%= @order.transaction_id %>
+  </tr>
+</table>

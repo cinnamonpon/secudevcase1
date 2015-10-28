@@ -6,6 +6,23 @@ class CartController < ApplicationController
     @cart_items = @cart.cart_items
   end
 
+  def check_out
+    @cart_items = @cart.cart_items
+
+    @order = current_user.orders.build(amount: @cart.total, status: "Unpaid")
+
+    if @order.save
+      @cart_items.each do |c|
+        @order.order_items.build(store_item_id: c.item.id, quantity: c.quantity).save
+      end
+      @cart.clear
+      redirect_to @order.paypal_url(manage_order_path(@order))
+    else
+      flash.now[:danger] = "There was a problem placing your order. Please try again."
+      render 'index'
+    end
+  end
+
   def add_item
     @items = StoreItem.paginate(:page => params[:page])
     item = StoreItem.find(params[:item_id])
