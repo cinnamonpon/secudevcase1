@@ -15,4 +15,4 @@ Your cart: <br>
     </tr>
   <% end %>
 </table>
-<%= link_to "Check out" %>
+<%= link_to "Check out", @cart.paypal_url(items_url) %>

@@ -2,6 +2,7 @@ class CartController < ApplicationController
   before_action :check_cart
 
   def index
+    @cart
     @cart_items = @cart.cart_items
   end
 
