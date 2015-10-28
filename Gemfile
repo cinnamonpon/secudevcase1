@@ -24,6 +24,7 @@ gem 'will_paginate',            '3.0.7'
 gem 'pg'
 gem 'pg_search'
 gem 'textacular'
+gem 'acts_as_shopping_cart', '~> 0.2.1'
 gem 'awesome_print'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'

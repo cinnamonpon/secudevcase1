@@ -1,6 +1,6 @@
 class CreateItems < ActiveRecord::Migration
   def change
-    create_table :items do |t|
+    create_table :store_items do |t|
       t.string :name
       t.string :description
       t.string :image

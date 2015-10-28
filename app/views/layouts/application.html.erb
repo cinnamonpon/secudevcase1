@@ -13,8 +13,9 @@
       <% if @current_user.admin? %>
         | <%= link_to "Register new user", new_user_path %>
         | <%= link_to "Backups", backups_path %>
+        | <%= link_to "Manage Store", manage_orders_path %>
       <% end %>
-
+        | <%= link_to "Store", items_path %>
         | <%= link_to "Edit Profile", edit_user_path(@current_user) %>
         | <%= link_to "Log out", logout_path, method: :delete %><br>
     <% end %> <br><br>

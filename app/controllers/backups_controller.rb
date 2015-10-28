@@ -35,21 +35,5 @@ class BackupsController < ApplicationController
       flash[:danger] = "File not found."
     end
   end
-
-  private
-
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
-
-    def admin_user
-      if !current_user.admin?
-				flash[:danger] = "Unauthorized access. Try again."
-				redirect_to root_url
-			end
-    end
+  
 end

@@ -11,6 +11,11 @@ class SessionsController < ApplicationController
       log_in user
       redirect_to root_path
     else
+      if !user
+        flash.now[:danger] = "Username is not yet registered."
+      else
+        flash.now[:danger] = "Password is incorrect."
+      end
       render 'new'
     end
   end

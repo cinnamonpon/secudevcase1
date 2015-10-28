@@ -109,4 +109,15 @@ class ApplicationController < ActionController::Base
         redirect_to login_url
       end
     end
+
+    def admin_user
+      if !current_user.admin?
+				flash[:danger] = "Unauthorized access. Try again."
+				redirect_to root_url
+			end
+    end
+
+    def store_location
+      session[:return_to] = request.url
+    end
 end

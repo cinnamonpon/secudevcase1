@@ -10,8 +10,15 @@ Rails.application.routes.draw do
   resources :backups, only: [:index, :create] do
     post 'download'
   end
-  resources :items
-
+  scope 'store' do
+    post 'add_item' => 'cart#add_item'
+    get 'view_cart' => 'cart#index'
+    resources :store_items, :path => 'items', :as => 'items', only: [:index, :show]
+  end
+  scope 'manage', as: 'manage' do
+    resources :store_items, except: [:index, :show]
+    resources :orders
+  end
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'

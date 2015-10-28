@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026051037) do
+ActiveRecord::Schema.define(version: 20151027135625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,14 +22,24 @@ ActiveRecord::Schema.define(version: 20151026051037) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "items", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "image"
-    t.decimal  "price"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table "cart_items", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.integer  "quantity"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.float    "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
   create_table "nifty_attachments", force: :cascade do |t|
     t.integer  "parent_id"
@@ -54,14 +64,14 @@ ActiveRecord::Schema.define(version: 20151026051037) do
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
-    t.integer  "item_id"
+    t.integer  "store_item_id"
     t.integer  "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "order_items", ["item_id"], name: "index_order_items_on_item_id", using: :btree
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+  add_index "order_items", ["store_item_id"], name: "index_order_items_on_store_item_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
@@ -380,6 +390,15 @@ ActiveRecord::Schema.define(version: 20151026051037) do
 
   add_index "shoppe_users", ["email_address"], name: "index_shoppe_users_on_email_address", using: :btree
 
+  create_table "store_items", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "image"
+    t.decimal  "price"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "fname"
     t.string   "lname"
@@ -394,8 +413,9 @@ ActiveRecord::Schema.define(version: 20151026051037) do
     t.datetime "updated_at",      null: false
   end
 
-  add_foreign_key "order_items", "items"
+  add_foreign_key "carts", "users"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "store_items"
   add_foreign_key "orders", "users"
   add_foreign_key "posts", "users"
 end
