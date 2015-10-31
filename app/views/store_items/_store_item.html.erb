@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= store_item.name %>
+  </td>
+  <td>
+    <%= store_item.description %>
+  </td>
+  <td>
+    $<%= store_item.price %>
+  </td>
+  <td>
+    <%= button_to "Add to cart", add_item_path, params: {'item_id' => store_item.id } %>
+  </td>
+</tr>

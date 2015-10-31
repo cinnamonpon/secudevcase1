@@ -1,0 +1,16 @@
+Welcome to Pua Store! <br><br>
+
+
+  <table border="1" style="width:50%">
+    <tr>
+      <th colspan="4">Store Items</th>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>Description</td>
+      <td colspan="2">Price</td>
+    <%= render @items if @items.any? %>
+
+  </table>
+
+    <%= will_paginate @items %>

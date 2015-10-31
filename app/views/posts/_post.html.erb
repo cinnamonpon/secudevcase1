@@ -3,7 +3,7 @@
     <%= link_to post.user.fname, post.user %> <br>
     <%= link_to post.user.username, post.user %> <br>
     Member since <%= post.user.created_at.strftime("%B %d, %Y") %>
-  <td>
+  </td>
   <td>
     Posted <%= post.created_at.strftime("%B %d, %Y") %>
     <% if current_user.admin? || current_user == post.user %>
