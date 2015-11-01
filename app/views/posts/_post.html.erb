@@ -1,19 +1,25 @@
-<tr>
-  <td>
-    <%= link_to post.user.fname, post.user %> <br>
-    <%= link_to post.user.username, post.user %> <br>
-    Member since <%= post.user.created_at.strftime("%B %d, %Y") %>
-  </td>
-  <td>
-    Posted <%= post.created_at.strftime("%B %d, %Y") %>
-    <% if current_user.admin? || current_user == post.user %>
-      <%= link_to "Edit", edit_post_path(post) %>
-      <%= link_to "Delete", post, method: :delete,
-                                       data: { confirm: "You sure?" } %>
-    <% end %><br>
-    <%= sanitize post.content %>
-    <% if post.updated_at != post.created_at %><br>
-      Edited <%= post.updated_at.strftime("%B %d, %Y") %>
-    <% end %>
-  </td>
-</tr>
+<div class="col-lg-6">
+  <div class="bs-component">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title" style="text-align:left;float:left;"><%= link_to post.user.full_name, post.user %> (<%= link_to post.user.username, post.user %>) <small>Member since <%= post.user.created_at.strftime("%B %d, %Y") %></small>
+        </h3>
+          <span class="panel-title" style="text-align:right;float:right;">
+            <% if current_user.admin? || current_user == post.user %>
+              <%= link_to "Edit", edit_post_path(post) %>
+              <%= link_to "Delete", post, method: :delete,
+                                               data: { confirm: "You sure?" } %>
+            <% end %></span><br>
+          <small>Posted <%= post.created_at.strftime("%B %d, %Y") %></small>
+      </div>
+
+      <div class="panel-body">
+        <%= sanitize post.content %>
+        <% if post.updated_at != post.created_at %><br>
+          Edited <%= post.updated_at.strftime("%B %d, %Y") %>
+          <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

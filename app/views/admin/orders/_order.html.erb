@@ -1,0 +1,11 @@
+<tr>
+  <td>
+    <%= order.status %>
+  </td>
+  <td>
+    <%= order.user.full_name %>
+  </td>
+  <td>
+    <%= link_to "View", admin_order_path(order) %>
+  </td>
+</tr>

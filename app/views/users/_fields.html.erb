@@ -1,0 +1,70 @@
+<%= render 'shared/error_messages', m: f.object %>
+
+<%= f.fieldset do %>
+
+  <%= f.group do %>
+    <%= f.label :fname, class: "col-lg-2 control-label"  %>
+    <%= f.input_group do %>
+      <%= f.text_field :fname %>
+    <% end %>
+  <% end %>
+
+  <%= f.group do %>
+    <%= f.label :lname, class: "col-lg-2 control-label"  %>
+    <%= f.input_group do %>
+      <%= f.text_field :lname, label: "Last name" %><br>
+    <% end %>
+  <% end %>
+
+  <%= f.group do %>
+    <%= f.label :password, class: "col-lg-2 control-label" %>
+    <%= f.input_group do %>
+      <%= f.password_field :password %><br>
+    <% end %>
+  <% end %>
+
+  <%= f.group do %>
+    <%= f.label :gender, class: "col-lg-2 control-label" %>
+    <%= f.input_group do %>
+      <%= f.select :gender, ['Male', 'Female']%><br>
+    <% end %>
+  <% end %>
+
+  <%= f.group do %>
+    <%= f.label :salutation, class: "col-lg-2 control-label" %>
+    <%= f.input_group do %>
+      <%= f.select :salutation, ['Mr', 'Sir', 'Senior', 'Count'] %>
+    <% end %>
+  <% end %>
+
+  <%= f.group do %>
+    <%= f.label :birthdate, class: "col-lg-2 control-label" %>
+    <%= f.input_group do %>
+      <%= f.date_select(:birthdate, :order => [:month, :day, :year], start_year: 1950) %><br>
+    <% end %>
+  <% end %>
+
+  <% if logged_in? && @current_user.admin? %>
+    <%= f.group do %>
+      <%= f.label :role, class: "col-lg-2 control-label" %>
+      <%= f.input_group do %>
+        <%= f.select :role, ['user', 'admin'], label: "Access level"%><br>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= f.group do %>
+    <%= f.label :about, class: "col-lg-2 control-label" %>
+    <%= f.input_group do %>
+      <%= f.text_area :about %><br>
+    <% end %>
+  <% end %>
+
+  <%= f.group do %>
+  <%= f.label " ", class: "col-lg-2 control-label" %>
+    <%= f.input_group do %>
+      <%= f.cancel root_path, user_path(f) %>
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+<% end %>

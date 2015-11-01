@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= order.id %>
+  </td>
+  <td>
+    <%= order.status %>
+  </td>
+  <td>
+    <%= order.user.full_name %>
+  </td>
+  <td>
+    <%= link_to "View", order_path(order) %>
+  </td>
+</tr>

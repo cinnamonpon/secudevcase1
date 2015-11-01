@@ -1,0 +1,41 @@
+<%= render 'shared/error_messages', m: f.object %>
+
+<%= f.fieldset do %>
+
+  <%= f.group do %>
+  <%= f.label :name, class: "col-lg-2 control-label"  %>
+    <%= f.input_group do %>
+      <%= f.text_field :name %>
+    <% end %>
+  <% end %>
+
+  <%= f.group do %>
+    <%= f.label :description, class: "col-lg-2 control-label"  %>
+    <%= f.input_group do %>
+      <%= f.text_area :description, label: "Last name" %><br>
+    <% end %>
+  <% end %>
+
+  <%= f.group do %>
+    <%= f.label :price, class: "col-lg-2 control-label"  %>
+    <%= f.input_group do %>
+      <%= f.text_field :price, label: "Last name", placeholder: "$" %><br>
+    <% end %>
+  <% end %>
+
+  <%= f.group do %>
+    <%= f.label :image, class: "col-lg-2 control-label"  %>
+    <%= f.input_group do %>
+      <%= f.file_field :image, class: "filestyle", "data-buttonName" =>"btn-primary", "data-buttonBefore" => "true", "data-iconName" => "glyphicon-picture", "data-buttonText" => "Choose image" %><br>
+    <% end %>
+  <% end %>
+
+
+  <%= f.group do %>
+  <%= f.label " ", class: "col-lg-2 control-label" %>
+    <%= f.input_group do %>
+      <%= f.cancel admin_path, item_path(f) %>
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+<% end %>

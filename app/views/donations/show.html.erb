@@ -1,0 +1,29 @@
+<div class="bs-component" style="width:60%; margin: auto;">
+<div class="page-header">
+  <h2>Donation Invoice</h2>
+</div>
+
+<div class="jumbotron">
+<table class="table table-striped table-hover">
+  <tbody>
+  <tr class="<%= cycle('', 'info') %>">
+    <th>Amount</th>
+    <th>$<%= @donation.amount %> </th>
+  </tr>
+
+  <tr class="<%= cycle('', 'info') %>">
+    <th>Donated by</th>
+    <td><%= @donation.user.full_name %></td>
+  </tr>
+  <tr class="<%= cycle('', 'info') %>">
+    <th>Donated</th>
+    <td><%= @donation.paid_at.strftime("%B %d, %Y") %></td>
+  </tr>
+  <tr class="<%= cycle('', 'info') %>">
+    <th>Paypal Transaction Identifier</th>
+    <td><%= @donation.transaction_id %>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>

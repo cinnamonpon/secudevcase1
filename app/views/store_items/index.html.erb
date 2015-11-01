@@ -1,16 +1,17 @@
-Welcome to Pua Store! <br><br>
-
-
-  <table border="1" style="width:50%">
-    <tr>
-      <th colspan="4">Store Items</th>
-    </tr>
-    <tr>
-      <td>Name</td>
-      <td>Description</td>
-      <td colspan="2">Price</td>
-    <%= render @items if @items.any? %>
-
-  </table>
-
-    <%= will_paginate @items %>
+<div class="page=header">
+  <h2>
+</div>
+<table class="table table-striped table-hover">
+  <thead>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Status</th>
+    <th></th>
+  </thead>
+  <tbody>
+  <%= render :partial => 'store_items/store_item', collection: @items if @items.any? %>
+</tbody>
+</table>
+<center><%= will_paginate @items, renderer: BootstrapPagination::Rails%></center>
+</div>

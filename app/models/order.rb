@@ -7,6 +7,8 @@ class Order < ActiveRecord::Base
   has_many :order_items
   belongs_to :user
 
+  self.per_page = 15
+
   serialize :notification_params, Hash
 
   def paypal_url(return_url)
@@ -28,5 +30,4 @@ class Order < ActiveRecord::Base
     end
     "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
   end
-
 end

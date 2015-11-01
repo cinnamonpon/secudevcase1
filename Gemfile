@@ -10,6 +10,12 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'bootstrap-sass'
+gem 'bootswatch-rails'
+gem 'bootstrap-filestyle-rails'
+
+gem 'paperclip'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -20,7 +26,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 
-gem 'will_paginate',            '3.0.7'
+gem 'will_paginate-bootstrap'
 gem 'pg'
 gem 'pg_search'
 gem 'textacular'

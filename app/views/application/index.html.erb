@@ -1,15 +1,25 @@
+<div class="jumbotron">
 <% if logged_in? %>
-  Welcome <%= "#{@current_user.salutation} #{@current_user.fname} #{@current_user.lname}" %>!<br>
+  <h3>Welcome <%= "#{@current_user.salutation} #{@current_user.fname} #{@current_user.lname}" %>!</h3><br>
   Username: <%= @current_user.username %><br>
   <%= @current_user.gender %>, Born <%= @current_user.birthdate.strftime("%B %d, %Y") %><br>
   About: <%= @current_user.about %><br><br>
 
-  <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-    <input type="hidden" name="cmd" value="_s-xclick">
-    <input type="hidden" name="hosted_button_id" value="QPJMXZWF3MM4U">
-    <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-    <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+  <%= form_tag '/donate' %>
+    <%= hidden_field_tag 'amount', '5' %>
+    <%= image_submit_tag("5-donate.jpg",  width: 130, height: 37) %>
   </form>
+
+  <%= form_tag '/donate' %>
+    <%= hidden_field_tag 'amount', '10' %>
+    <%= image_submit_tag("10-donate.jpg", width: 130, height: 37) %>
+  </form>
+
+  <%= form_tag '/donate' %>
+    <%= hidden_field_tag 'amount', '2' %>
+    <%= image_submit_tag("20-donate.jpg",  width: 130, height: 37) %>
+  </form>
+  </div>
 
   <%= form_for(@post) do |f| %>
     <%= f.label "Post a message: " %>
@@ -18,26 +28,34 @@
     <%= f.submit "Post" %>
   <% end %><br>
 
-  Global Message Boards<br>
 
-  <%= form_tag '/search' %>
-  <div id="fields_wrap">
-  <%= search_field_tag :content %>
-
-  <%= submit_tag "Search" %>
-
-  </div>
+  <%= form_tag '/search' do -%>
+    <div id="fields_wrap">
+      <%= search_field_tag :content %>
+      <%= submit_tag "Search" %>
+    </div>
+  <% end -%>
   <button id="add_field_btn">Add field</button>
 
-  <table border="1" style="width:50%">
 
-    <%= render @posts if @posts.any? %>
+  <div class="jumbotron">
+    <div class="page-header">
+      <h3>Global Message Boards</h3>
+    </div>
+    <div class="row"><%= render @posts if @posts.any? %></div>
+    <center><%= will_paginate @posts, renderer: BootstrapPagination::Rails %></center>
+  </div>
 
-  </table>
 
-    <%= will_paginate @posts %>
 <% else %>
-  <%= link_to "Register", new_user_path %>
-  <%= link_to "Log in", login_path %>
+  <div class="jumbotron">
+    <h1>Welcome human!</h1>
+    <p><br>
+    <%= link_to "Sign up", new_user_path %> now or
+    <%= link_to "Log in", login_path %> if you already have an account.
+    </p>
+    <center><%= image_tag "nyan.gif" %></center>
+    <span>Nyan cat poops rainbows.</span>
+  </div>
 <% end %>
 
