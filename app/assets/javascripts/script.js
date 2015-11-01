@@ -1,6 +1,10 @@
 
   $(document).ready(function() {
 
+    $('body')
+  .off('click.dropdown touchstart.dropdown.data-api', '.dropdown')
+  .on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() });
+
     if($('#user_gender').val() == 'Female'){
       $('#user_salutation').empty().append("<option>Miss</option>");
       $('#user_salutation').append("<option>Ms</option>");
@@ -53,4 +57,8 @@
     $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
         e.preventDefault(); $(this).parent('div').remove(); x--;
     });
-  });
+
+    $(":file").filestyle({
+      input: false
+    })
+});

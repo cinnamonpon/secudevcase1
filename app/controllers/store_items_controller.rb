@@ -5,4 +5,39 @@ class StoreItemsController < ApplicationController
   def index
     @items = StoreItem.paginate(:page => params[:page])
   end
+
+  def show
+    @item = StoreItem.find params[:id]
+  end
+
+  def new
+    @item = StoreItem.new
+  end
+
+  def create
+    @item = StoreItem.new(item_params)
+    if @item.save
+      flash[:success] = "Item was successfully added to your store."
+      redirect_to 'manage'
+    else
+      render 'new'
+    end
+  end
+
+  def edit
+    @item = StoreItem.find params[:id]
+  end
+
+  def update
+  end
+
+  def manage
+    @items = StoreItem.paginate(:page => params[:page])
+  end
+
+  private
+
+    def item_params
+      params.require(:store_item).permit(:name, :description, :price, :image)
+    end
 end

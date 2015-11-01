@@ -16,7 +16,7 @@ class CartController < ApplicationController
         @order.order_items.build(store_item_id: c.item.id, quantity: c.quantity).save
       end
       @cart.clear
-      redirect_to @order.paypal_url(manage_order_path(@order))
+      redirect_to @order.paypal_url(order_path(@order))
     else
       flash.now[:danger] = "There was a problem placing your order. Please try again."
       render 'index'

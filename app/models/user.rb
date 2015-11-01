@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 
   has_many :posts, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :donations, dependent: :destroy
   has_one  :cart, dependent: :destroy
 
   has_secure_password

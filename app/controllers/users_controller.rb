@@ -60,4 +60,11 @@ class UsersController < ApplicationController
                                    :birthdate, :gender, :about, :salutation)
     end
 
+    def correct_user
+      @user = User.find params[:id]
+      if current_user != @user || !current_user.admin?
+        flash[:danger] = "Unauthorized access. Try again."
+				redirect_to root_url
+			end
+   end
 end

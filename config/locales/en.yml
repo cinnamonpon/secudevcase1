@@ -20,4 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        lname: "Last name"
+        fname: "First name"
+        birthdate: "Age"
+        role: "Access level"
+    errors:
+      models:
+        user:
+          attributes:
+            birthdate:
+              inclusion: "should be at least 18 years old"
