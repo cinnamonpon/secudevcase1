@@ -1,0 +1,27 @@
+//Import bootstrap-sprockets
+@import "bootstrap-sprockets";
+
+// Import cerulean variables
+@import "bootswatch/yeti/variables";
+
+// Then bootstrap itself
+@import "bootstrap";
+
+#error_explanation {
+  @extend .alert;
+  @extend .alert-dismissible;
+  @extend .alert-danger; /* optional */
+}
+
+.field_with_errors {
+  @extend .has-error;
+}
+
+// Bootstrap body padding for fixed navbar
+body {
+    padding-top: 65px;
+}
+// And finally bootswatch style itself
+@import "bootswatch/yeti/bootswatch";
+
+// Whatever application styles you have go last

@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= donation.user.full_name %>
+  </td>
+  <td>
+    <%= donation.amount %>
+  </td>
+  <td>
+    <%= donation.status %>
+  </td>
+  <td>
+    <%= link_to "View", donation_path(donation) %>
+  </td>
+</tr>
