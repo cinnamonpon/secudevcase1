@@ -5,6 +5,8 @@
   .off('click.dropdown touchstart.dropdown.data-api', '.dropdown')
   .on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() });
 
+    $('selector').css( 'cursor', 'wait' );
+    
     if($('#user_gender').val() == 'Female'){
       $('#user_salutation').empty().append("<option>Miss</option>");
       $('#user_salutation').append("<option>Ms</option>");

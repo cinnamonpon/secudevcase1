@@ -5,7 +5,8 @@ default: &default
   timeout: 5000
 
 development:
-  url: <%= ENV['DATABASE_URL'] %>
+  <<: *default
+  database: secudevcase1
 
 test:
   <<: *default
@@ -13,4 +14,4 @@ test:
 
 production:
   <<: *default
-  database: secudevcase1
+  url: <%= ENV['DATABASE_URL'] %>
