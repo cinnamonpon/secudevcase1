@@ -1,3 +1,22 @@
+
+<% if @posts.count >= 3 && @posts.count < 5 %>
+  <%= image_tag("collect-bronze.png", size: "85x85") %>
+  <br>
+
+<% elsif @posts.count >= 5 && @posts.count < 10 %>
+  <%= image_tag("collect-bronze.png", size: "85x85") %>
+  <%= image_tag("collect-silver.png", size: "85x85") %>
+<br>
+
+<% elsif @posts.count >= 10 %>
+  <%= image_tag("collect-bronze.png", size: "85x85") %>
+  <%= image_tag("collect-silver.png", size: "85x85") %>
+  <%= image_tag("Collect-Gold.png", size: "85x85") %>
+  <br>
+
+
+<% end %>
+
 <%= "#{@user.salutation} #{@user.fname} #{@user.lname}" %><br>
 Username: <%= @user.username %><br>
 <%= @user.gender %>, Born <%= @user.birthdate.strftime("%B %d, %Y") %><br>

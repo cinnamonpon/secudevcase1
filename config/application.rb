@@ -23,7 +23,7 @@ module Secudevcase1
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    config.action_view.sanitized_allowed_tags = ['strong', 'em', 'b', 'p', 'span', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'br', 'center', 'i', 'strike', 'small']
+    config.action_view.sanitized_allowed_tags = ['strong', 'em', 'b', 'p', 'span', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'br', 'center', 'i', 'strike', 'small', 'marquee']
     config.action_view.sanitized_allowed_attributes = ['style']
   end
 end
