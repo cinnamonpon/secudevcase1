@@ -1,0 +1,8 @@
+<div class="list-group">
+  <%= link_to "", class: "list-group-item disabled", style: "color: #222;" do %>
+    <strong><i class="glyphicon glyphicon-th-list"></i> Store Navigation</strong>
+  <% end %>
+  <%= panel_link "Items", items_path %>
+  <%= panel_link "Orders", orders_path %>
+  <%= panel_link "Donations", donations_path %>
+</div>

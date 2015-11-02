@@ -15,8 +15,7 @@ class CartController < ApplicationController
       @cart_items.each do |c|
         @order.order_items.build(store_item_id: c.item.id, quantity: c.quantity).save
       end
-      @cart.clear
-      redirect_to @order.paypal_url(order_path(@order))
+      redirect_to @order
     else
       flash.now[:danger] = "There was a problem placing your order. Please try again."
       render 'index'
@@ -26,16 +25,19 @@ class CartController < ApplicationController
   def add_item
     @items = StoreItem.paginate(:page => params[:page])
     item = StoreItem.find(params[:item_id])
-    quantity = params[:quantity] ||= 1
-    if @cart.add(item, item.price, quantity)
+    quantity = params[:quantity].to_f ||= 1
+    begin
+      @cart.add(item, item.price, quantity)
       flash.now[:success] = "Successfully added to cart."
-    else
+    rescue => e
       flash.now[:danger] = "There was a problem adding to your cart. Try again."
     end
-    render 'store_items/index'
+
+    redirect_to items_path
   end
 
   def clear
+    @cart.clear
   end
 
   private

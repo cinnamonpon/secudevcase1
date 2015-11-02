@@ -3,7 +3,7 @@ class BackupsController < ApplicationController
   before_action :admin_user
 
   def index
-    @files = Backup.all
+    @files = Backup.paginate(:page => params[:page])
   end
 
   def create
@@ -35,5 +35,5 @@ class BackupsController < ApplicationController
       flash[:danger] = "File not found."
     end
   end
-  
+
 end

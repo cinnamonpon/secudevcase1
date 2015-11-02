@@ -5,10 +5,16 @@
   <td>
     <%= order.status %>
   </td>
+  <% if current_page?(admin_orders_path) %>
   <td>
     <%= order.user.full_name %>
   </td>
+  <% end %>
   <td>
-    <%= link_to "View", order_path(order) %>
+    <%= "Items purchased: #{order.order_items.count}"%><br>
+    <%= "Total amount: $#{order.amount}" %>
+  </td>
+  <td>
+    <%= link_to "View Invoice", order_path(order) %>
   </td>
 </tr>

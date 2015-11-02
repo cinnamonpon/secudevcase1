@@ -6,7 +6,7 @@
   .on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() });
 
     $('selector').css( 'cursor', 'wait' );
-    
+
     if($('#user_gender').val() == 'Female'){
       $('#user_salutation').empty().append("<option>Miss</option>");
       $('#user_salutation').append("<option>Ms</option>");
@@ -60,7 +60,14 @@
         e.preventDefault(); $(this).parent('div').remove(); x--;
     });
 
-    $(":file").filestyle({
-      input: false
-    })
+    if (location.hash !== '') {
+        $('.nav-tabs a[href="' + location.hash.replace('tab_','') + '"]').tab('show');
+    } else {
+        $('.nav-tabs a:first').tab('show');
+    }
+
+      $('.nav-tabs a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+            window.location.hash = 'tab_'+  e.target.hash.substr(1) ;
+            return false;
+      });
 });

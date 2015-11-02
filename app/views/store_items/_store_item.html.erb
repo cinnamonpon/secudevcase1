@@ -1,26 +1,21 @@
-<tr>
-  <td>
-    <%= link_to "#{store_item.name}", item_path(store_item.id) %>
-  </td>
-  <td>
-    <%= store_item.description %>
-  </td>
-  <td>
-    $<%= store_item.price %>
-  </td>
-  <% if current_user.admin? %>
-    <td><%= store_item.status %></td>
-  <% end %>
-  <td>
-    <% if request.path == "/admin" %>
-      <%= link_to "View", item_path(store_item.id) %> |
-      <%= link_to "Edit", edit_item_path(store_item.id) %> |
-      <%= link_to "Delete", item_path(store_item.id), method: :delete,
-                                       data: { confirm: "This will be tagged as inactive." } %>
-    <% else %>
-      <%= button_to add_item_path, class: "btn btn-xs btn-primary", params: {'item_id' => store_item.id } do %>
-        <i class="glyphicon glyphicon-shopping-cart"></i> Add
+<div class="col-lg-6">
+  <div class="list-group text-center" style="min-height:90px;">
+  <a href="<%= item_path(store_item) %>" class="list-group-item">
+    <%= image_tag(store_item.image.url(:small)) %>
+    <div style="margin-top:15px;"><h4 class="list-group-item-heading"><%= store_item.name %></h4>
+    <p class="list-group-item-text"><%= store_item.description %></p><br></div>
+
+    <%= form_tag(add_item_path, class: "form-inline") do %>
+        <%= hidden_field_tag :item_id, store_item.id %>
+        <div class="form-group">
+          <h5 style="display:inline;margin-right:5px;"><strong>$<%= store_item.price %></strong></h5>
+          <%= text_field_tag :quantity, 1, {class: "form-control input-xs", style: "margin-right:5px;width: 45px; height:30px;"}%>
+        </div>
+
+      <%= button_tag(type: "submit", class: "btn btn-xs btn-primary") do %>
+          <i class="glyphicon glyphicon-shopping-cart"></i> Add
       <% end %>
     <% end %>
-  </td>
-</tr>
+  </a>
+</div>
+</div>

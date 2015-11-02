@@ -1,0 +1,24 @@
+<div class="page-header">
+  <h1>Orders</h1>
+</div>
+<div class="row">
+  <div class="col-lg-8">
+    <table class="table table-striped table-hover">
+      <thead>
+        <th>Order #</th>
+        <th>Payment Status</th>
+        <th>Summary</th>
+        <th></th>
+      </thead>
+      <tbody>
+      <%= render :partial => 'orders/order', collection: @orders if @orders.any? %>
+    </tbody>
+    </table>
+      <center><%= will_paginate @orders, renderer: BootstrapPagination::Rails %></center>
+    </div>
+
+    <div class="col-lg-4">
+      <%= render 'shared/store_nav' %>
+    </div>
+  </div>
+</div>

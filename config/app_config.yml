@@ -1,0 +1,17 @@
+development:
+  paypal_email: merchant@puastore.com
+  paypal_secret: supersecret
+  paypal_cert_id: 6ZK6CUVQ2FVSY
+  paypal_url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
+
+test:
+  paypal_email: test@example.com
+  paypal_secret: testsecret
+  paypal_cert_id: 123456789
+  paypal_url: testpaypalurl
+
+production:
+  paypal_email: merchant@puastore.com
+  paypal_secret: supersecret
+  paypal_cert_id: 6ZK6CUVQ2FVSY
+  paypal_url: "https://www.sandbox.paypal.com/cgi-bin/webscr"

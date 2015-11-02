@@ -35,15 +35,16 @@
     <th>Payment status</th>
       <td><%= @order.status %><br>
     <% if @order.status != "Completed" %>
-    <%= form_tag @order.paypal_url(order_path(@order)) %>
-      <%= hidden_field_tag 'amount', '5' %>
-      <%= image_submit_tag("pay_now.gif") %>
-    </form>
+      <%= form_tag APP_CONFIG[:paypal_url] do %>
+        <%= hidden_field_tag :cmd, "_s-xclick" %>
+        <%= hidden_field_tag :encrypted, @order.paypal_encrypted(order_url(@order), hook_url(:secret => APP_CONFIG[:paypal_secret])) %>
+        <%= image_submit_tag("pay_now.gif") %>
+      <% end %>
     <% end %>
   </tr>
   <tr class="<%= cycle('info', '') %>">
     <th>Payment date</th>
-    <td><%= @order.purchased_at.strftime("%B %d, %Y") %></td>
+    <td><%= @order.purchased_at.strftime("%B %d, %Y") if @order.purchased_at %></td>
   </tr>
   <tr class="<%= cycle('info', '') %>">
     <th>Paypal Transaction Identifier</th>

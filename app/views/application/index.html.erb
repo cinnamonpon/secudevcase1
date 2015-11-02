@@ -5,21 +5,13 @@
   <%= @current_user.gender %>, Born <%= @current_user.birthdate.strftime("%B %d, %Y") %><br>
   About: <%= @current_user.about %><br><br>
 
-  <%= form_tag '/donate' %>
-    <%= hidden_field_tag 'amount', '5' %>
-    <%= image_submit_tag("5-donate.jpg",  width: 130, height: 37) %>
-  </form>
+  <div class="form-inline">
+  <%= render 'donations/form', amount: 5 %>
+  <%= render 'donations/form', amount: 10 %>
+  <%= render 'donations/form', amount: 20 %>
+</div>
 
-  <%= form_tag '/donate' %>
-    <%= hidden_field_tag 'amount', '10' %>
-    <%= image_submit_tag("10-donate.jpg", width: 130, height: 37) %>
-  </form>
-
-  <%= form_tag '/donate' %>
-    <%= hidden_field_tag 'amount', '2' %>
-    <%= image_submit_tag("20-donate.jpg",  width: 130, height: 37) %>
-  </form>
-  </div>
+</div>
 
   <%= form_for(@post) do |f| %>
     <%= f.label "Post a message: " %>

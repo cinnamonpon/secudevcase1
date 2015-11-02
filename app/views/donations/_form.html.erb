@@ -1,0 +1,7 @@
+<div class="form-group">
+<%= form_tag APP_CONFIG[:paypal_url] do %>
+  <%= hidden_field_tag :cmd, "_s-xclick" %>
+  <%= hidden_field_tag :encrypted, Donation.paypal_encrypted(amount, current_user.id, donations_url, hook_url(:secret => APP_CONFIG[:paypal_secret])) %>
+  <%= image_submit_tag("#{amount}-donate.jpg", width: 105, height: 28) %>
+<% end %>
+</div>

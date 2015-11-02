@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :backups, only: [:index, :create] do
     post 'download'
   end
-  resources :donations, only: [:show]
+  resources :donations, only: [:index, :show]
   post 'donate' => 'donations#donate'
   resources :orders
   scope 'store' do
@@ -20,10 +20,17 @@ Rails.application.routes.draw do
     get 'check_out' => 'cart#check_out'
     get 'view_cart' => 'cart#index'
     resources :store_items, :path => 'items', :as => 'items'
+    resources :cart do
+      get 'clear'
+    end
   end
 
   namespace :admin do
     get '/' => 'admin#index'
+    match '/orders' => 'admin#index', via: :get
+    match '/items' => 'admin#index', via: :get
+    match '/donations' => 'admin#index', via: :get
+
     resources :store_items
     resources :orders
   end

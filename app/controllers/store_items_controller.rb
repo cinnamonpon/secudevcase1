@@ -4,6 +4,7 @@ class StoreItemsController < ApplicationController
 
   def index
     @items = StoreItem.paginate(:page => params[:page])
+    @cart_items = current_user.cart.cart_items
   end
 
   def show

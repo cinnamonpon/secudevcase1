@@ -1,7 +1,19 @@
-<%= button_to "Create Backup", action: "create" %><br>
-Backup files<br>
-<ul>
-  <% @files.each do |f| %>
-    <li><%= link_to "#{f.filename}", backup_download_path(f), method: :post %></li>
-  <% end %>
-</ul>
+<div class="jumbotron">
+  <div class="text-right">
+    <%= button_to "",action: "create", class: "btn btn-primary" do%>
+      <i class="glyphicon glyphicon-floppy-disk"></i> Create Backup
+    <% end %>
+  </div>
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <th>Backup #</th>
+      <th>File</th>
+      <th></th>
+    </thead>
+    <tbody>
+    <%= render @files, as: :backup if @files.any? %>
+  </tbody>
+  </table>
+    <center><%= will_paginate @files, renderer: BootstrapPagination::Rails %></center>
+</div>

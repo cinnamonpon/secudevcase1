@@ -1,0 +1,5 @@
+<tr class="<%= cycle('info', '') %>">
+  <td><%= backup.id %></td>
+  <td><%= backup.filename %>
+  <td><%= link_to "Download", backup_download_path(backup), method: :post %></td>
+</tr>

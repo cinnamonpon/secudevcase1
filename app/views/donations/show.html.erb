@@ -23,6 +23,9 @@
     <th>Paypal Transaction Identifier</th>
     <td><%= @donation.transaction_id %>
   </tr>
+  <tr class="<%= cycle('', 'info') %>">
+    <td>Donated via Shop</td>
+    <td><%= link_to "View Order Invoice", order_path(@donation.order_ref)</td>
 </tbody>
 </table>
 </div>

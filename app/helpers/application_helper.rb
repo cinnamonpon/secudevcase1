@@ -12,6 +12,11 @@ module ApplicationHelper
     end
   end
 
+  def panel_link(link_text, link_path)
+    class_name = current_page?(link_path) ? "list-group-item active" : "list-group-item"
+    link_to link_text, link_path, class: class_name
+  end
+
   def full_title(page_title = '')
     base_title = "Hack me"
     if page_title.empty?
