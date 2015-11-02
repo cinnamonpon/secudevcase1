@@ -41,8 +41,6 @@ ActiveRecord::Schema.define(version: 20151101123841) do
 
   add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
-<<<<<<< HEAD
-=======
   create_table "donations", force: :cascade do |t|
     t.integer  "user_id"
     t.float    "amount"
@@ -56,28 +54,6 @@ ActiveRecord::Schema.define(version: 20151101123841) do
 
   add_index "donations", ["user_id"], name: "index_donations_on_user_id", using: :btree
 
-  create_table "nifty_attachments", force: :cascade do |t|
-    t.integer  "parent_id"
-    t.string   "parent_type"
-    t.string   "token"
-    t.string   "digest"
-    t.string   "role"
-    t.string   "file_name"
-    t.string   "file_type"
-    t.binary   "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "nifty_key_value_store", force: :cascade do |t|
-    t.integer "parent_id"
-    t.string  "parent_type"
-    t.string  "group"
-    t.string  "name"
-    t.string  "value"
-  end
-
->>>>>>> 4824a4971816ccb084b635d90bbbc9b0798f7adb
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "store_item_id"
