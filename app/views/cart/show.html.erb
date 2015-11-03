@@ -1,6 +1,6 @@
 <div class="bs-component" style="width:60%; margin: auto;">
 <div class="page-header">
-  <h2>Order Invoice</h2>
+  <h2>Your Cart</h2>
 </div>
 
 <div class="jumbotron">
@@ -22,9 +22,11 @@
     <% @cart_items.each do |c| %>
       <tr class="<%= cycle('info', '')%>">
         <td><%= c.item.name %></td>
-        <td><%= c.quantity %></td>
+        <td>
+          <%= c.quantity %>
+        </td>
+        <td>$<%= c.item.price %></td>
         <td>$<%= c.price %></td>
-        <td>$<%= c.quantity * c.price %>
       </tr>
     <% end %>
     <tr class="<%= cycle('info', '')%>">
@@ -32,8 +34,11 @@
       <th><%= @cart.total %></th>
     </tr>
     </table>
-    <%= link_to check_out_path, class: "btn btn-primary", style:"text-align:right;float:right;margin-top:-5px;" do %>
+    <%= link_to check_out_path, class: "btn btn-primary", style:"text-align:right;float:right;margin-top:-5px;margin-left:10px;" do %>
     <i class="glyphicon glyphicon-shopping-cart"></i> Check out
+    <% end %>
+    <%= link_to edit_cart_path, class: "btn btn-primary", style:"text-align:right;float:right;margin-top:-5px;" do %>
+    <i class="glyphicon glyphicon-pencil"></i> Edit
     <% end %>
 </div>
 </div>

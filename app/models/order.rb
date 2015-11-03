@@ -1,4 +1,6 @@
 class Order < ActiveRecord::Base
+  default_scope -> { order(created_at: :desc) }
+
   validates :user_id, presence: true
   validates :amount, presence: true, :numericality => { :greater_than => 0 }
   validates :status, presence: true
@@ -17,7 +19,7 @@ class Order < ActiveRecord::Base
       :cmd => '_cart',
       :upload => 1,
       :return => return_url,
-      :invoice => id,
+      :custom => id,
       :notify_url => notify_url,
       :cert_id => APP_CONFIG[:paypal_cert_id]
     }

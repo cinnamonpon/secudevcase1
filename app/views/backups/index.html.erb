@@ -1,7 +1,10 @@
+  <div class="page-header">
+    <h2>Posts Backup</h2>
+  </div>
 <div class="jumbotron">
   <div class="text-right">
     <%= button_to "",action: "create", class: "btn btn-primary" do%>
-      <i class="glyphicon glyphicon-floppy-disk"></i> Create Backup
+      <i class="glyphicon glyphicon-file"></i> Create Backup
     <% end %>
   </div>
 
@@ -9,6 +12,7 @@
     <thead>
       <th>Backup #</th>
       <th>File</th>
+      <th>Created</th>
       <th></th>
     </thead>
     <tbody>

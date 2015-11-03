@@ -1,14 +1,14 @@
 <tr>
-  <% if current_page?(admin_donations_path) %>
+  <% if current_page?(admin_path) %>
   <td>
-    <%= donation.user.full_name %>
+    <%= link_to donation.user.full_name, donation.user %>
   </td>
   <% end %>
   <td>
     <%= "$#{donation.amount }" %>
   </td>
   <td>
-    <%= donation.status %>
+    <%= donation.paid_at.strftime("%B %d, %Y") if donation.paid_at %>
   </td>
   <td>
     <%= link_to "View Invoice", donation_path(donation) %>

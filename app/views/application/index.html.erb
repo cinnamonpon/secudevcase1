@@ -6,9 +6,9 @@
   About: <%= @current_user.about %><br><br>
 
   <div class="form-inline">
-  <%= render 'donations/form', amount: 5 %>
-  <%= render 'donations/form', amount: 10 %>
-  <%= render 'donations/form', amount: 20 %>
+  <%= render 'donations/form', d: @donation5 %>
+  <%= render 'donations/form', d: @donation10 %>
+  <%= render 'donations/form', d: @donation20 %>
 </div>
 
 </div>
@@ -50,4 +50,3 @@
     <span>Nyan cat poops rainbows.</span>
   </div>
 <% end %>
-

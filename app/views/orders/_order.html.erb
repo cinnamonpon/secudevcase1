@@ -1,15 +1,18 @@
 <tr>
+  <% if current_page?(admin_path) %>
   <td>
-    <%= order.id %>
+    <%= link_to order.user.full_name, order.user %>
+  </td>
+  <% end %>
+  <td>
+    <%= order.created_at.strftime("%B %d, %Y") %>
   </td>
   <td>
     <%= order.status %>
-  </td>
-  <% if current_page?(admin_orders_path) %>
-  <td>
-    <%= order.user.full_name %>
-  </td>
-  <% end %>
+    <% if order.purchased_at && order.status == "Completed" %>
+      <%= order.purchased_at.strftime("%B %d, %Y") %>
+    <% end %>
+    </td>
   <td>
     <%= "Items purchased: #{order.order_items.count}"%><br>
     <%= "Total amount: $#{order.amount}" %>

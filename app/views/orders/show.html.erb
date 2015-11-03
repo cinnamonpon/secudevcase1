@@ -17,7 +17,8 @@
       <td>
         <strong><%= o.store_item.name %></strong><br>
         <span style="padding:20px">Item id: <%= o.store_item.id %></span><br>
-        <span style="padding:20px">Item quantity: <%= o.quantity %></span>
+        <span style="padding:20px">Item quantity: <%= o.quantity %></span><br>
+        <span style="padding:20px">Unit price: <%= o.store_item.price %></span>
       </td>
       <td><strong> $<%= o.store_item.price * o.quantity %> </strong> </td>
     </tr>
@@ -28,13 +29,13 @@
   </tr>
 
   <tr class="<%= cycle('info', '') %>">
-    <th>Buyer</th>
-    <td><%= @order.user.full_name %></td>
+    <th>Ordered by</th>
+    <td><%= link_to @order.user.full_name, @order.user %></td>
   </tr>
   <tr class="<%= cycle('info', '') %>">
     <th>Payment status</th>
       <td><%= @order.status %><br>
-    <% if @order.status != "Completed" %>
+    <% if @order.status == "Unpaid" %>
       <%= form_tag APP_CONFIG[:paypal_url] do %>
         <%= hidden_field_tag :cmd, "_s-xclick" %>
         <%= hidden_field_tag :encrypted, @order.paypal_encrypted(order_url(@order), hook_url(:secret => APP_CONFIG[:paypal_secret])) %>
@@ -52,5 +53,10 @@
   </tr>
 </tbody>
 </table>
-</div>
+    <% if @order.status == "Unpaid" %>
+      <%= link_to order_path(@order), class: "btn btn-primary", style:"text-align:right;float:right;margin-top:-8px;", method: :put do %>
+      <i class="glyphicon glyphicon-remove-circle"></i> Cancel order
+      <% end %>
+    <% end %>
+  </div>
 </div>

@@ -1,7 +1,9 @@
 class CartController < ApplicationController
+  before_action :logged_in_user
+  before_action :correct_user
   before_action :check_cart
 
-  def index
+  def show
     @cart
     @cart_items = @cart.cart_items
   end
@@ -40,7 +42,60 @@ class CartController < ApplicationController
     @cart.clear
   end
 
+  def item_remove
+    @cart
+    @cart_items = @cart.cart_items
+    quantity = Integer params[:quantity] rescue nil
+    success = @cart.remove(StoreItem.find params[:id], quantity+1) rescue nil
+    if success
+      flash[:success] = "Item removed from your cart."
+      redirect_to @cart
+    else
+      flash[:danger] = "There was a problem updating your cart."
+      render 'edit'
+    end
+  end
+
+  def edit
+    @cart
+    @cart_items = @cart.cart_items
+  end
+
+  def update
+    cart_items = params[:cart][:cart_items_attributes]
+    success = "random"
+    cart_items.each_with_index do |c, i|
+      cart_item = CartItem.find cart_items["#{i}"][:id]
+      quantity1 = cart_item.quantity
+      quantity2 = Integer(cart_items["#{i}"][:quantity]) rescue nil
+
+      if quantity2
+        diff = quantity2 - quantity1
+        if diff > 0
+          success = @cart.add(cart_item.item, cart_item.item.price, diff) rescue nil
+        elsif diff < 0
+          diff.times do |i|
+            success = @cart.remove(cart_item.item, diff) rescue nil
+          end
+        end
+      end
+      break if success == nil
+    end
+
+      if success
+        flash.now[:success] = "Successfully updated cart."
+        redirect_to @cart
+      else
+        flash[:danger] = "There was a problem updating your cart."
+        render 'edit'
+      end
+
+  end
   private
+
+    def cart_params
+      params.require(:cart).permit(:cart_items_attributes => [:quantity])
+    end
 
     def check_cart
       if !current_user.cart
@@ -48,5 +103,12 @@ class CartController < ApplicationController
         current_user.cart = c
       end
       @cart = current_user.cart
+    end
+
+    def correct_user
+      if current_user.admin?
+        flash[:danger] = "Unauthorized access. Try again."
+        redirect_to root_url
+      end
     end
 end

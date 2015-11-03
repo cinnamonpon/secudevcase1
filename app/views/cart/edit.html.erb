@@ -1,0 +1,51 @@
+<div class="bs-component" style="width:60%; margin: auto;">
+<div class="page-header">
+  <h2>Edit Cart</h2>
+</div>
+
+<div class="jumbotron">
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th>
+      <% if current_page?(edit_cart_path) %>
+        <th></th>
+      <% end %>
+  </tr>
+  </thead>
+  <tbody>
+    <% if @cart_items.empty? %>
+      <tr>
+        <td colspan="4"><center>Your cart is empty. <%= link_to "Shop now", items_path %> or <%= link_to "view your submmitted orders", orders_path %>.</center></td>
+      </tr>
+    <% end %>
+    <%= form_for @cart do |f| %>
+      <% @cart_items.each do |c| %>
+        <tr class="<%= cycle('info', '')%>">
+          <td><%= c.item.name %></td>
+          <td>
+              <%= f.fields_for :cart_items do |c| %>
+                <div class="form-group">
+                  <%= c.number_field :quantity, {class: "form-control input-xs", style: "width: 35px; height:20px;font-size:8px;padding:0 5px;"}%>
+                </div>
+              <% end %>
+          </td>
+          <td>$<%= c.item.price %></td>
+          <td>$<%= c.price %></td>
+            <td><%= link_to item_remove_cart_path(id:c.item.id, quantity:c.quantity), method: 'post' do %>
+              <i class="glyphicon glyphicon-remove"></i>
+            <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+    <tr class="<%= cycle('info', '')%>">
+      <td colspan="3"></td>
+      <th><%= @cart.total %></th>
+    </tr>
+    </table>
+    <%= submit_tag "Save", class: "btn btn-primary", style:"text-align:right;float:right;margin-top:-5px;", form: "edit_cart_1" %>
+</div>
+</div>

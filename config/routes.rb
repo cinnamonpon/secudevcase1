@@ -18,10 +18,10 @@ Rails.application.routes.draw do
     post 'hook'     => 'orders#hook'
     post 'hook_donate' => 'donations#hook_donate'
     get 'check_out' => 'cart#check_out'
-    get 'view_cart' => 'cart#index'
     resources :store_items, :path => 'items', :as => 'items'
-    resources :cart do
+    resource :cart, :controller => 'cart' do
       get 'clear'
+      post 'item_remove'
     end
   end
 

@@ -13,7 +13,7 @@
 
   <tr class="<%= cycle('', 'info') %>">
     <th>Donated by</th>
-    <td><%= @donation.user.full_name %></td>
+    <td><%= link_to @donation.user.full_name, @donation.user %></td>
   </tr>
   <tr class="<%= cycle('', 'info') %>">
     <th>Donated</th>
@@ -23,9 +23,12 @@
     <th>Paypal Transaction Identifier</th>
     <td><%= @donation.transaction_id %>
   </tr>
-  <tr class="<%= cycle('', 'info') %>">
-    <td>Donated via Shop</td>
-    <td><%= link_to "View Order Invoice", order_path(@donation.order_ref)</td>
+  <% if @donation.order_ref %>
+    <tr class="<%= cycle('', 'info') %>">
+      <td>Donated via Shop</td>
+      <td><%= link_to "View Order Invoice", order_path(@donation.order_ref) %>
+    </td>
+  <% end %>
 </tbody>
 </table>
 </div>

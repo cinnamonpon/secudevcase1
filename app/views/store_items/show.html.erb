@@ -1,0 +1,29 @@
+
+<div class="row">
+  <div class="col-lg-8" >
+    <div class="page-header">
+      <h2><%= @item.name%></h2>
+    </div>
+
+    <%= image_tag @item.image.url(:large) %><br>
+    <%= form_tag(add_item_path, class: "form-inline", style:"margin-top:15px;") do %>
+        <%= hidden_field_tag :item_id, @item.id %>
+        <div class="form-group">
+          <h5 style="display:inline;margin-right:80px;"><strong>$<%= @item.price %></strong></h5>
+          <%= text_field_tag :quantity, {class: "form-control input-xs", style: "margin-right:5px;width: 45px; height:30px;padding:0;"}%>
+        </div>
+
+        <%= btn_add @item.status %>
+    <% end %><br>
+      <%= item_status @item.status  %><br>
+
+    <div class="page-header">
+      <h3>Item Description</h3>
+    </div>
+    <h6><%= @item.description %></h6>
+  </div>
+  <div class="col-lg-4" style="padding-top:110px;">
+    <%= render 'shared/store_nav' %>
+    <%= render 'shared/cart_panel' %>
+  </div>
+</div>

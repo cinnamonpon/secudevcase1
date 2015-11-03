@@ -1,4 +1,7 @@
 class Cart < ActiveRecord::Base
+  has_many :cart_items, :foreign_key => "owner_id"
+  accepts_nested_attributes_for :cart_items
+
   acts_as_shopping_cart_using :cart_item
   validates :user_id, presence: true, uniqueness: true
   belongs_to :user

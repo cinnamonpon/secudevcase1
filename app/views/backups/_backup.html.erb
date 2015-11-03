@@ -1,5 +1,8 @@
 <tr class="<%= cycle('info', '') %>">
   <td><%= backup.id %></td>
-  <td><%= backup.filename %>
-  <td><%= link_to "Download", backup_download_path(backup), method: :post %></td>
+  <td><%= backup.filename %></td>
+  <td><%= backup.created_at.strftime("%B %d, %Y") %>
+  <td><%= link_to "Download", backup_download_path(backup), method: :post %>
+    <!-- <i class="glyphicon glyphicon-floppy-disk"></i> Download -->
+  </td>
 </tr>

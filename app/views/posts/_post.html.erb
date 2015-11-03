@@ -10,13 +10,13 @@
               <%= link_to "Delete", post, method: :delete,
                                                data: { confirm: "You sure?" } %>
             <% end %></span><br>
-          <small>Posted <%= post.created_at.strftime("%B %d, %Y") %></small>
+          <p style="text-align:left;font-size:80%;margin-bottom:-5px;">Posted <%= post.created_at.strftime("%B %d, %Y") %></p>
       </div>
 
       <div class="panel-body">
         <%= sanitize post.content %>
         <% if post.updated_at != post.created_at %><br>
-          Edited <%= post.updated_at.strftime("%B %d, %Y") %>
+          <p style="text-align:left;font-size:80%; margin:-8px 0 -8px 0;">Edited <%= post.updated_at.strftime("%B %d, %Y") %></p>
           <% end %>
       </div>
 

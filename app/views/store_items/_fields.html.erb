@@ -12,14 +12,24 @@
   <%= f.group do %>
     <%= f.label :description, class: "col-lg-2 control-label"  %>
     <%= f.input_group do %>
-      <%= f.text_area :description, label: "Last name" %><br>
+      <%= f.text_area :description %><br>
+    <% end %>
+  <% end %>
+
+  <%= f.group do %>
+    <%= f.label :status, class: "col-lg-2 control-label"  %>
+    <%= f.input_group do %>
+      <%= f.select :status, ["In stock", "Out of stock", "Archived"]%><br>
     <% end %>
   <% end %>
 
   <%= f.group do %>
     <%= f.label :price, class: "col-lg-2 control-label"  %>
     <%= f.input_group do %>
-      <%= f.text_field :price, label: "Last name", placeholder: "$" %><br>
+      <div class="input-group">
+      <span class="input-group-addon">$</span>
+      <%= f.text_field :price %><br>
+      </div>
     <% end %>
   <% end %>
 

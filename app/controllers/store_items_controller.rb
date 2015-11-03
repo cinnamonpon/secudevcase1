@@ -3,12 +3,13 @@ class StoreItemsController < ApplicationController
   before_action :admin_user, only: [:create, :new, :update, :destroy]
 
   def index
-    @items = StoreItem.paginate(:page => params[:page])
+    @items = StoreItem.active.paginate(:page => params[:page])
     @cart_items = current_user.cart.cart_items
   end
 
   def show
     @item = StoreItem.find params[:id]
+    @cart_items = current_user.cart.cart_items
   end
 
   def new
@@ -30,10 +31,6 @@ class StoreItemsController < ApplicationController
   end
 
   def update
-  end
-
-  def manage
-    @items = StoreItem.paginate(:page => params[:page])
   end
 
   private
