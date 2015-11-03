@@ -27,6 +27,18 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.paginate(page: params[:page])
+    @orders = @user.orders
+    @donations = @user.donations
+
+    @order_amount = 0
+    @orders.each do |order|
+      @order_amount = order.amount + @order_amount
+    end
+
+    @donation_amount = 0
+    @donations.each do |order|
+      @donation_amount = order.amount + @donation_amount
+    end
  end
 
   def edit

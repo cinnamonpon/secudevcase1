@@ -17,12 +17,64 @@
 
 <% end %>
 
-<%= "#{@user.salutation} #{@user.fname} #{@user.lname}" %><br>
+<% if @donation_amount >= 5 && @donation_amount < 25 %>
+    <%= image_tag("donate-bronze.png", size: "85x85") %>
+  <br>
+
+
+<% elsif @donation_amount >= 25 && @donation_amount < 100 %>
+    <%= image_tag("donate-bronze.png", size: "85x85") %>
+    <%= image_tag("donate-silver.png", size: "85x85") %>
+  <br>
+
+<% elsif @donation_amount >= 100 %>
+    <%= image_tag("donate-bronze.png", size: "85x85") %>
+    <%= image_tag("donate-silver.png", size: "85x85") %>
+    <%= image_tag("Donate-Gold.png", size: "85x85") %>
+  <br>
+<% end %>
+
+<% if @order_amount >= 5 && @order_amount < 25 %>
+    <%= image_tag("purchase-bronze.png", size: "85x85") %>
+  <br>
+
+
+<% elsif @order_amount >= 25 && @order_amount < 100 %>
+    <%= image_tag("purchase-bronze.png", size: "85x85") %>
+    <%= image_tag("purchase-silver.png", size: "85x85") %>
+  <br>
+
+
+<% elsif @order_amount >= 100 %>
+    <%= image_tag("purchase-bronze.png", size: "85x85") %>
+    <%= image_tag("purchase-silver.png", size: "85x85") %>
+    <%= image_tag("Purchase-Gold.png", size: "85x85") %>
+  <br>
+<% end %>
+
+<% if @posts.count >= 3 && @order_amount >= 5 && @donation_amount >= 5 %>
+    <%= image_tag("raymund-award.png", size: "85x85") %>
+  <br>
+
+<% elsif @posts.count >= 5 && @order_amount >= 20 && @donation_amount >= 20 %>
+    <%= image_tag("raymund-award.png", size: "85x85") %>
+    <%= image_tag("raymund-award.png", size: "85x85") %>
+  <br> 
+
+  <% elsif @posts.count >= 10 && @order_amount >= 100 && @donation_amount >= 100 %>
+    <%= image_tag("raymund-award.png", size: "85x85") %>
+    <%= image_tag("raymund-award.png", size: "85x85") %>
+  <br> 
+<% end %>
+
+
+
+
+<%= "#{@user.salutation}. #{@user.fname} #{@user.lname}" %><br>
 Username: <%= @user.username %><br>
 <%= @user.gender %>, Born <%= @user.birthdate.strftime("%B %d, %Y") %><br>
 About: <%= @user.about %><br><br>
 
-Posts
 <% if @posts.any? %>
   <table border="1" style="width:50%">
     <%= render @posts %>
