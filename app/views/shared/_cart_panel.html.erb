@@ -1,8 +1,8 @@
 <div class="panel panel-info">
   <div class="panel-heading" style="height:40px;">
-    <h2 class="panel-title" style="text-align:left;float:left;"><%= link_to "Your cart" cart_index_path</h2>
+    <h2 class="panel-title" style="text-align:left;float:left;"><%= link_to "Your cart", cart_path %></h2>
     <p class="panel-title" style="text-align:right;float:right;">
-      <%= link_to cart_edit_path, style:"text-align:right;float:right;margin-top:-2px;" do %>
+      <%= link_to edit_cart_path, style:"text-align:right;float:right;margin-top:-2px;" do %>
       <i class="glyphicon glyphicon-pencil"></i> Edit
       <% end %>
     </p>
@@ -27,7 +27,7 @@
     </table>
   </div>
   <div class="panel-heading">
-    <%= link_to cart_clear_path(current_user.cart), class: "btn btn-xs btn-primary", style:"text-align:right;float:right;margin-top:-2px;margin-left:5px;" do %>
+    <%= link_to clear_cart_path(current_user.cart), class: "btn btn-xs btn-primary", style:"text-align:right;float:right;margin-top:-2px;margin-left:5px;" do %>
     <i class="glyphicon glyphicon-erase"></i> Clear
     <% end %>
     <%= link_to check_out_path, class: "btn btn-xs btn-primary", style:"text-align:right;float:right;margin-top:-2px;" do %>

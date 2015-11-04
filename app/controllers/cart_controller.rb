@@ -1,6 +1,5 @@
 class CartController < ApplicationController
   before_action :logged_in_user
-  before_action :correct_user
   before_action :check_cart
 
   def show
@@ -20,7 +19,7 @@ class CartController < ApplicationController
       redirect_to @order
     else
       flash.now[:danger] = "There was a problem placing your order. Please try again."
-      render 'index'
+      render 'show'
     end
   end
 
@@ -49,7 +48,7 @@ class CartController < ApplicationController
     success = @cart.remove(StoreItem.find params[:id], quantity+1) rescue nil
     if success
       flash[:success] = "Item removed from your cart."
-      redirect_to @cart
+      render 'show'
     else
       flash[:danger] = "There was a problem updating your cart."
       render 'edit'
@@ -80,15 +79,15 @@ class CartController < ApplicationController
         end
       end
       break if success == nil
-    end
 
       if success
         flash.now[:success] = "Successfully updated cart."
-        redirect_to @cart
+        render 'show'
       else
         flash[:danger] = "There was a problem updating your cart."
         render 'edit'
       end
+    end
 
   end
   private
@@ -107,7 +106,7 @@ class CartController < ApplicationController
 
     def correct_user
       if current_user.admin?
-        flash[:danger] = "Unauthorized access. Try again."
+        flash[:danger] = "Please log in to your user account."
         redirect_to root_url
       end
     end

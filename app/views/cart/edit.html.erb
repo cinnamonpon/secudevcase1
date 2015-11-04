@@ -23,21 +23,20 @@
       </tr>
     <% end %>
     <%= form_for @cart do |f| %>
-      <% @cart_items.each do |c| %>
         <tr class="<%= cycle('info', '')%>">
-          <td><%= c.item.name %></td>
-          <td>
-              <%= f.fields_for :cart_items do |c| %>
+              <%= f.fields_for :cart_items do |fc| %>
+              <td><%= fc.object.item.name %></td>
+              <td>
+
                 <div class="form-group">
-                  <%= c.number_field :quantity, {class: "form-control input-xs", style: "width: 35px; height:20px;font-size:8px;padding:0 5px;"}%>
-                </div>
-              <% end %>
+                  <%= fc.number_field :quantity, {class: "form-control input-xs", style: "width: 35px; height:20px;font-size:8px;padding:0 5px;"}%>
+                </div></td>
+                <td>$<%= fc.object.item.price %></td>
+                <td>$<%= fc.object.price %></td>
+                  <td><%= link_to item_remove_cart_path(id:fc.object.item.id, quantity:fc.object.quantity), method: 'post' do %>
+                    <i class="glyphicon glyphicon-remove"></i>
+                  <% end %>
           </td>
-          <td>$<%= c.item.price %></td>
-          <td>$<%= c.price %></td>
-            <td><%= link_to item_remove_cart_path(id:c.item.id, quantity:c.quantity), method: 'post' do %>
-              <i class="glyphicon glyphicon-remove"></i>
-            <% end %>
         </tr>
       <% end %>
     <% end %>

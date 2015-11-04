@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
   validates :amount, presence: true, :numericality => { :greater_than => 0 }
   validates :status, presence: true
 
-  has_many :store_items, through: :order_items
+  has_many :store_items, through: :order_items, dependent: :destroy
   has_many :order_items
   belongs_to :user
 

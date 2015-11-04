@@ -8,6 +8,7 @@
 
 User.create(fname: "Admin", lname: "Admin", password: "pusajo69", username: "admin", gender: "Male", salutation: "Mr", birthdate: "06-06-1990", about: "About me", role: "admin")
 
-StoreItem.create(name: "$5 Donation", description: "Donate $5 to Pua Store", price: 5)
-StoreItem.create(name: "$10 Donation", description: "Donate $10 to Pua Store", price: 10)
-StoreItem.create(name: "$20 Donation", description: "Donate $20 to Pua Store", price: 20)
+StoreItem.destroy_all
+StoreItem.create(name: "$5 Donation", description: "Donate $5 to Pua Store", price: 5, status: "In stock")
+StoreItem.create(name: "$10 Donation", description: "Donate $10 to Pua Store", price: 10, status: "In stock")
+StoreItem.create(name: "$20 Donation", description: "Donate $20 to Pua Store", price: 20, status: "In stock")

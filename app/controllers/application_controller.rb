@@ -5,9 +5,11 @@ class ApplicationController < ActionController::Base
   def index
     @post = Post.new
     @posts = Post.paginate(:page => params[:page])
-    @donation5 = current_user.donations.build(amount: 5)
-    @donation10 = current_user.donations.build(amount: 10)
-    @donation20 = current_user.donations.build(amount: 20)
+    if logged_in?
+      @donation5 = current_user.donations.build(amount: 5)
+      @donation10 = current_user.donations.build(amount: 10)
+      @donation20 = current_user.donations.build(amount: 20)
+    end
   end
 
   def search
