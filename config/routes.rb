@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'application#index'
-  resources :users, except: [:index, :destroy]
+  resources :users, except: [:index, :destroy], path_names: { new: 'register'}
   resources :posts, except: [:index, :new, :show]
   resources :backups, only: [:index, :create] do
     post 'download'
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :donations, only: [:index, :show]
   post 'donate' => 'donations#donate'
   resources :orders
+
   scope 'store' do
     post 'add_item' => 'cart#add_item'
     post 'hook'     => 'orders#hook'

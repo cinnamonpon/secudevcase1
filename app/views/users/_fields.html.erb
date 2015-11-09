@@ -2,15 +2,6 @@
 
 <%= f.fieldset do %>
 
-  <% if current_page?(login_path) %>
-  <%= f.group do %>
-    <%= f.label :username, class: "col-lg-2 control-label"  %>
-    <%= f.input_group do %>
-      <%= f.text_field :username %>
-    <% end %>
-  <% end %>
-  <% end %>
-
   <%= f.group do %>
     <%= f.label :fname, class: "col-lg-2 control-label"  %>
     <%= f.input_group do %>
@@ -22,6 +13,15 @@
     <%= f.label :lname, class: "col-lg-2 control-label"  %>
     <%= f.input_group do %>
       <%= f.text_field :lname, label: "Last name" %><br>
+    <% end %>
+  <% end %>
+
+  <% if current_page?(new_user_path) %>
+    <%= f.group do %>
+      <%= f.label :username, class: "col-lg-2 control-label"  %>
+      <%= f.input_group do %>
+        <%= f.text_field :username %>
+      <% end %>
     <% end %>
   <% end %>
 

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :show]
+  skip_before_filter :logged_in_user, only: [:new, :create]
   before_action :correct_user, only: [:edit, :update]
 
   def new
@@ -74,7 +74,7 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find params[:id]
-      if current_user != @user || !current_user.admin?
+      if current_user != @user && !current_user.admin?
         flash[:danger] = "Unauthorized access. Try again."
 				redirect_to root_url
 			end

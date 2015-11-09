@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   before_save :default_role
+  after_create :initialize_cart
+
   VALID_NAME_REGEX = /\A[a-zA-Z\s]+\Z/i
   VALID_USERNAME_REGEX = /\A[\w]+\Z/i
   validates :fname,  presence: true, length: { maximum: 50 }, format: { with: VALID_NAME_REGEX }
@@ -30,11 +32,19 @@ class User < ActiveRecord::Base
         errors.add(:salutation, "is invalid")
         false
     end
+
   end
 
   def admin?
     if self.role == 'admin'
       return true
+    end
+  end
+
+  def initialize_cart
+    if !self.admin?
+      c = Cart.create
+      self.cart = c
     end
   end
 end

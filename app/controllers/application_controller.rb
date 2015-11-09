@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :logged_in_user, except: :index
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
 
@@ -118,6 +119,13 @@ class ApplicationController < ActionController::Base
     def admin_user
       if !current_user.admin?
 				flash[:danger] = "Unauthorized access. Try again."
+				redirect_to root_url
+			end
+    end
+
+    def user_access
+      if current_user.admin?
+				flash[:danger] = "Please log in to your user account."
 				redirect_to root_url
 			end
     end

@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :logged_in_user, except: :hook
-  before_action :correct_user, only: [:show]
+  skip_before_filter :logged_in_user, only: :hook
+  before_action :user_access, only: :index
+  before_action :correct_user, only: :show
 
   before_action
   protect_from_forgery except: [:hook]
@@ -43,7 +44,7 @@ class OrdersController < ApplicationController
   private
   def correct_user
     order = current_user.orders.find_by(id: params[:id])
-    if order.nil? || !current_user.admin?
+    if order.nil? && !current_user.admin?
       flash[:danger] = "Unauthorized access. Try again."
       redirect_to root_url
     end

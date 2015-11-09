@@ -1,6 +1,6 @@
 class StoreItemsController < ApplicationController
-  before_action :logged_in_user
-  before_action :admin_user, only: [:create, :new, :update, :destroy]
+  before_action :user_access, only: :index
+  before_action :check_cart
 
   def index
     @items = StoreItem.active.paginate(:page => params[:page])
@@ -12,30 +12,18 @@ class StoreItemsController < ApplicationController
     @cart_items = current_user.cart.cart_items
   end
 
-  def new
-    @item = StoreItem.new
-  end
-
-  def create
-    @item = StoreItem.new(item_params)
-    if @item.save
-      flash[:success] = "Item was successfully added to your store."
-      redirect_to 'manage'
-    else
-      render 'new'
-    end
-  end
-
-  def edit
-    @item = StoreItem.find params[:id]
-  end
-
-  def update
-  end
-
   private
 
     def item_params
-      params.require(:store_item).permit(:name, :description, :price, :image)
+      params.require(:store_item).permit(:name, :description, :price, :image, :status)
     end
+
+    def check_cart
+      if !current_user.cart
+        c = Cart.create
+        current_user.cart = c
+      end
+    end
+
+
 end
