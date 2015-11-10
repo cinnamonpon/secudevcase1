@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
   def hook
     params.permit! # Permit all Paypal input params
     status = params[:payment_status]
-    if status == "Completed" && params[:secret] == APP_CONFIG[:paypal_secret]
+    if status == "Completed" && params[:secret] == APP_CONFIG[:paypal_secret] && @order.amount == params["mc_gross"]
       if params[:txn_type] == "cart"
         @order = Order.find params[:custom]
         @user = @order.user
