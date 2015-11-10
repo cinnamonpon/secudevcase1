@@ -42,7 +42,7 @@
       <div class="modal-body">
         <%= custom_form(@post, html: {class: "form-horizontal", id: "post-form"}) do |f| %>
           <%= f.group do %>
-            <%= f.text_area :content, size: "30x5", value: "Check this out #{request.original_url}"  %>
+            <%= f.text_area :content, size: "30x5", value: "Check this out "  %>
           <% end %>
         <% end %>
       </div>

@@ -1,5 +1,5 @@
 class StoreItem < ActiveRecord::Base
-  has_attached_file :image, styles: { small: "64x64#", med: "100x100#", large: "200x200#" },                   :default_url => 'not_found.gif'
+  has_attached_file :image, styles: { small: "64x64#", med: "100x100#", large: "200x200#" },                   :default_url => ':style/not_found.gif'
 
   has_many :order_items, dependent: :destroy
 
