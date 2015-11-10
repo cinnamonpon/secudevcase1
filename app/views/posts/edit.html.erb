@@ -1,6 +1,22 @@
-<%= form_for(@post) do |f| %>
-  <%= f.label "Edit Post: " %>
-  <%= f.text_area :content %>
+<div class="well bs-component" style="width:60%; margin: auto;">
+  <%= custom_form(@post, html: {class: "form-horizontal"}) do |f| %>
+    <%= f.legend "Edit Post" %>
+    
+    <%= render 'shared/error_messages', m: f.object %>
 
-  <%= f.submit "Submit" %>
-<% end %><br>
+    <%= f.group do %>
+      <%= f.label :content, class: "col-lg-2 control-label" %>
+      <%= f.input_group do %>
+        <%= f.text_area :content %><br>
+      <% end %>
+    <% end %>
+
+    <%= f.group do %>
+    <%= f.label " ", class: "col-lg-2 control-label" %>
+      <%= f.input_group do %>
+        <%= f.cancel root_path, root_path %>
+        <%= f.submit "Submit" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

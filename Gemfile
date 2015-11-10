@@ -17,6 +17,7 @@ gem 'bootstrap-filestyle-rails'
 
 gem 'paperclip'
 
+gem 'rails_autolink'
 gem 'nifty-generators'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

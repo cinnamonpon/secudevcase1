@@ -9,14 +9,11 @@ class StoreItemsController < ApplicationController
 
   def show
     @item = StoreItem.find params[:id]
+    @post = Post.new
     @cart_items = current_user.cart.cart_items
   end
 
   private
-
-    def item_params
-      params.require(:store_item).permit(:name, :description, :price, :image, :status)
-    end
 
     def check_cart
       if !current_user.cart

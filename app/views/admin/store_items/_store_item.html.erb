@@ -12,15 +12,9 @@
     <td><%= store_item.status %></td>
   <% end %>
   <td>
-    <% if request.path == "/admin" %>
       <%= link_to "View", item_path(store_item.id) %> |
-      <%= link_to "Edit", edit_item_path(store_item.id) %> |
-      <%= link_to "Delete", item_path(store_item.id), method: :delete,
-                                       data: { confirm: "This will be tagged as inactive." } %>
-    <% else %>
-      <%= button_to add_item_path, class: "btn btn-xs btn-primary", params: {'item_id' => store_item.id } do %>
-        <i class="glyphicon glyphicon-shopping-cart"></i> Add
-      <% end %>
-    <% end %>
+      <%= link_to "Edit", edit_admin_item_path(store_item.id) %> |
+      <%= link_to "Delete", admin_item_path(store_item.id), method: :delete,
+                                       data: { confirm: "This item will be archived." } %>
   </td>
 </tr>

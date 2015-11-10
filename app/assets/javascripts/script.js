@@ -41,10 +41,10 @@
 
     $(document.body).on('change', '#type', function() {
       if($(this).val() == 'Date' || $(this).val() == 'date'){
-        $(this).parent('div').replaceWith('<div><select name="condition[]"><option value="and">AND</option><option value="or">OR</option></select><select name="type[]" id="type"><option value="user">User</option><option value="date" selected>Date</option></select><select name="range[]" id="range"><option value=">=">>=</option><option value="<="><=</option><option value="=">=</option></select><input type="date" name="date[]" placeholder="yyyy-mm-dd"/><a href="#" class="remove_field">Remove</a></div>');
+        $(this).parent('div').replaceWith('<div><select class="form-control input-sm" name="condition[]"><option value="and">AND</option><option value="or">OR</option></select><select name="type[]" id="type"><option value="user">User</option><option value="date" selected>Date</option></select><select class="form-control input-sm" name="range[]" id="range"><option value=">=">>=</option><option value="<="><=</option><option value="=">=</option></select><input class="form-control" type="date" name="date[]" placeholder="yyyy-mm-dd"/><a href="#" id="remove_field"><i class="glyphicon glyphicon-remove-circle"></i></a></div>');
       }
       else if($(this).val() == 'User' || $(this).val() == 'user'){
-        $(this).parent('div').replaceWith('<div><select name="condition[]"><option value="and">AND</option><option value="or">OR</option></select><select name="type[]" id="type"><option value="user">User</option><option value="date">Date</option></select><input type="text" name="username[]"/><a href="#" class="remove_field">Remove</a></div>');
+        $(this).parent('div').replaceWith('<div><select class="form-control input-sm" name="condition[]"><option value="and">AND</option><option value="or">OR</option></select><select class="form-control input-sm" name="type[]" id="type"><option value="user">User</option><option value="date">Date</option></select><input class="form-control" type="text" name="username[]"/><a href="#" id="remove_field"><i class="glyphicon glyphicon-remove-circle"></i></a></div>');
       }
     });
 
@@ -52,11 +52,11 @@
         e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<div><select name="condition[]"><option value="and">AND</option><option value="or">OR</option></select><select name="type[]" id="type"><option value="user">User</option><option value="date">Date</option></select><input type="text" name="username[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+            $(wrapper).append('<div><select class="form-control input-sm" name="condition[]"><option value="and">AND</option><option value="or">OR</option></select><select class="form-control input-sm" name="type[]" id="type"><option value="user">User</option><option value="date">Date</option></select><input class="form-control" type="text" name="username[]"/><a href="#" id="remove_field"><i class="glyphicon glyphicon-remove-circle"></i></a></div>'); //add input box
         }
     });
 
-    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+    $(wrapper).on("click","#remove_field", function(e){ //user click on remove text
         e.preventDefault(); $(this).parent('div').remove(); x--;
     });
 

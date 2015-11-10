@@ -1,5 +1,5 @@
 <div class="well bs-component" style="width:60%; margin: auto;">
-  <%= custom_form(@item, :html => {class: "form-horizontal", multipart: true}, url: items_path, ) do |f| %>
+  <%= custom_form(@item, :html => {class: "form-horizontal", multipart: true}, url: admin_items_path ) do |f| %>
     <%= f.legend "Add new item" %>
 
     <%= render 'fields', f: f %>

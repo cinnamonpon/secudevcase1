@@ -6,38 +6,40 @@
   About: <%= @current_user.about %><br><br>
 
   <div class="form-inline">
-  <%= render 'donations/form', d: @donation5 %>
-  <%= render 'donations/form', d: @donation10 %>
-  <%= render 'donations/form', d: @donation20 %>
-</div>
+    <%= render 'donations/form', d: @donation5 %>
+    <%= render 'donations/form', d: @donation10 %>
+    <%= render 'donations/form', d: @donation20 %>
+  </div>
 
 </div>
-
-  <%= form_for(@post) do |f| %>
-    <%= f.label "Post a message: " %>
-    <%= f.text_area :content %>
-
-    <%= f.submit "Post" %>
-  <% end %><br>
-
-
-  <%= form_tag '/search' do -%>
-    <div id="fields_wrap">
-      <%= search_field_tag :content %>
-      <%= submit_tag "Search" %>
-    </div>
-  <% end -%>
-  <button id="add_field_btn">Add field</button>
-
 
   <div class="jumbotron">
     <div class="page-header">
-      <h3>Global Message Boards</h3>
+      <h3>Global Message Boards
+        <%= form_tag '/search', class: "form-inline", style: "margin-bottom:5px;" do -%>
+          <div id="fields_wrap" class="form-group" style="margin-top:10px;">
+            <%= search_field_tag :content, nil, class: "form-control input-sm" %>
+            <%= submit_tag "Search", class: "btn btn-sm btn-default" %>
+            <button id="add_field_btn" class="btn btn-sm btn-default">Add field</button>
+
+        <% end -%>
+      </h3>
     </div>
+    <%= custom_form(@post, html: {class: "form-horizontal"}) do |f| %>
+      <%= f.group do %>
+        <%= f.label "Post a message  " %>
+        <div class="input-group">
+          <%= f.text_area :content %>
+         <span class="input-group-btn">
+           <%= f.submit "Post", style:"margin-left:10px;" %>
+         </span>
+      </div>
+      <% end %>
+
+    <% end %><br>
     <div class="row"><%= render @posts if @posts.any? %></div>
     <center><%= will_paginate @posts, renderer: BootstrapPagination::Rails %></center>
   </div>
-
 
 <% else %>
   <div class="jumbotron">

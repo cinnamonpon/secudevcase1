@@ -10,8 +10,18 @@
         <th></th>
       </thead>
       <tbody>
+          <tr>
+            <td colspan="2" class="info"><center>Donations are greatly appreciated. </center></td>
+          </tr>
+          <tr>
+            <td colspan="2"><center><div class="form-inline">
+              <%= render 'donations/form', d: @donation5 %>
+              <%= render 'donations/form', d: @donation10 %>
+              <%= render 'donations/form', d: @donation20 %>
+            </div></center></td>
+          </tr>
         <%= render @donations if @donations.any? %>
-    </tbody>
+      </tbody>
     </table>
     <center><%= will_paginate @donations, renderer: BootstrapPagination::Rails%></center>
 
@@ -19,6 +29,7 @@
 
   <div class="col-lg-4">
     <%= render 'shared/store_nav' %>
+    <%= render 'shared/cart_panel' %>
   </div>
 
 </div>

@@ -69,11 +69,8 @@ class ApplicationController < ActionController::Base
     @posts = query.empty? ? Post.find_substring(params[:content]) : Post.joins(:user).where(query)
     @posts = @posts.paginate(:page => params[:page])
 
-    if @posts.any?
-      flash.now[:success] = "Search results for #{params[:content]}"
-    else
-      flash.now[:danger] = "No results found for #{params[:content]}"
-    end
+    @header = @posts.any? ? "Search results for '#{params[:content]}'" : "No results found for '#{params[:content]}'"
+
   end
 
   protect_from_forgery with: :exception

@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_filter :logged_in_user, except: :destroy
-  
+
   def new
     if logged_in?
       redirect_to root_url

@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.paginate(page: params[:page])
-    @orders = @user.orders
+    @orders = @user.orders.where(status: "Completed")
     @donations = @user.donations
 
     @order_amount = 0

@@ -4,6 +4,13 @@ class DonationsController < ApplicationController
 
   def index
     @donations = current_user.donations.paginate(:page => params[:page])
+
+    @donation5 = current_user.donations.build(amount: 5)
+    @donation10 = current_user.donations.build(amount: 10)
+    @donation20 = current_user.donations.build(amount: 20)
+
+    @cart_items = current_user.cart.cart_items
+
   end
 
   def donate

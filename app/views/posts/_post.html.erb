@@ -2,7 +2,7 @@
   <div class="bs-component">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title" style="text-align:left;float:left;"><%= link_to post.user.full_name, post.user %> (<%= link_to post.user.username, post.user %>) <small>Member since <%= post.user.created_at.strftime("%B %d, %Y") %></small>
+        <h3 class="panel-title" style="text-align:left;float:left;"><%= link_to "#{post.user.full_name} (#{post.user.username})", post.user %> <small>Member since <%= post.user.created_at.strftime("%B %d, %Y") %></small>
         </h3>
           <span class="panel-title" style="text-align:right;float:right;">
             <% if current_user.admin? || current_user == post.user %>
@@ -14,9 +14,9 @@
       </div>
 
       <div class="panel-body">
-        <%= sanitize post.content %>
+        <%= auto_link post.content %>
         <% if post.updated_at != post.created_at %><br>
-          <p style="text-align:left;font-size:80%; margin:-8px 0 -8px 0;">Edited <%= post.updated_at.strftime("%B %d, %Y") %></p>
+          <p style="text-align:left;font-size:80%; margin:-2px 0 -7px 0;">Edited <%= post.updated_at.strftime("%B %d, %Y") %></p>
           <% end %>
       </div>
 

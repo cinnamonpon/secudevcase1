@@ -4,9 +4,10 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      flash[:success] = "post created!"
+      flash[:success] = "Post created."
       redirect_to root_url
     else
+      flash[:danger] = "Post cannot be empty."
       redirect_to root_url
     end
   end
@@ -18,7 +19,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update_attributes(post_params)
-      flash[:success] = "Post updated"
+      flash[:success] = "Post updated."
       redirect_to root_url
     else
       render 'edit'
@@ -27,7 +28,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    flash[:success] = "post deleted"
+    flash[:success] = "Post deleted."
     redirect_to request.referrer || root_url
   end
 

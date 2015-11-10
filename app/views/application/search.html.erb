@@ -1,7 +1,10 @@
-<table border="1" style="width:50%">
+<div class="jumbotron">
+  <div class="page-header">
+    <h3>
+      <%= @header %>
+    </h3>
+  </div>
 
-  <%= render @posts if @posts.any? %>
-
-</table>
-
-<%= will_paginate @posts %>
+  <div class="row"><%= render @posts if @posts.any? %></div>
+  <center><%= will_paginate @posts, renderer: BootstrapPagination::Rails %></center>
+</div>

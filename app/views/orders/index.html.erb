@@ -11,14 +11,20 @@
         <th></th>
       </thead>
       <tbody>
-      <%= render :partial => 'orders/order', collection: @orders if @orders.any? %>
-    </tbody>
+        <% if @orders.empty? %>
+          <tr>
+            <td colspan="4" class="info"><center>You haven't placed any orders yet.</center></td>
+          </tr>
+        <% end %>
+        <%= render :partial => 'orders/order', collection: @orders if @orders.any? %>
+      </tbody>
     </table>
       <center><%= will_paginate @orders, renderer: BootstrapPagination::Rails %></center>
     </div>
 
     <div class="col-lg-4">
       <%= render 'shared/store_nav' %>
+      <%= render 'shared/cart_panel' %>
     </div>
   </div>
 </div>

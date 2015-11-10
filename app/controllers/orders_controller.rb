@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = current_user.orders.paginate(:page => params[:page])
+    @cart_items = current_user.cart.cart_items
   end
 
   def show
@@ -41,7 +42,16 @@ class OrdersController < ApplicationController
     render nothing: true
   end
 
+  def update
+    order = Order.find params[:id]
+    if order.update_attributes(status: "Cancelled")
+      flash[:success] = "Your order is now cancelled."
+      redirect_to order
+    end
+  end
+
   private
+
   def correct_user
     order = current_user.orders.find_by(id: params[:id])
     if order.nil? && !current_user.admin?

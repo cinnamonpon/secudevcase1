@@ -9,9 +9,7 @@
           <%= hidden_field_tag :item_id, store_item.id %>
           <%= hidden_field_tag :quantity, 1 %>
 
-        <%= button_tag(type: "submit", class: "btn btn-xs btn-primary") do %>
-            <i class="glyphicon glyphicon-shopping-cart"></i> Add
-        <% end %>
+          <%= btn_add store_item.status %>
       <% end %>
     </a>
   </div>

@@ -22,7 +22,7 @@
         <td colspan="4"><center>Your cart is empty. <%= link_to "Shop now", items_path %> or <%= link_to "view your submmitted orders", orders_path %>.</center></td>
       </tr>
     <% end %>
-    <%= form_for @cart do |f| %>
+    <%= form_for @cart, html: { id: "cart-form"} do |f| %>
         <tr class="<%= cycle('info', '')%>">
               <%= f.fields_for :cart_items do |fc| %>
               <td><%= fc.object.item.name %></td>
@@ -45,6 +45,6 @@
       <th><%= @cart.total %></th>
     </tr>
     </table>
-    <%= submit_tag "Save", class: "btn btn-primary", style:"text-align:right;float:right;margin-top:-5px;", form: "edit_cart_1" %>
+    <%= submit_tag "Save", class: "btn btn-primary", style:"text-align:right;float:right;margin-top:-5px;", form: "cart-form" %>
 </div>
 </div>

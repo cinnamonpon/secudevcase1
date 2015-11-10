@@ -1,12 +1,18 @@
-<%= form_for(:session, url: login_path) do |f| %>
+<div class="well bs-component" style="width:65%; margin: auto;">
+  <%= form_for(:session, :html => {class: "form-inline"}, url: login_path) do |f| %>
 
-  <%= f.label :username %>
-  <%= f.text_field :username %>
+    <div class="form-group">
+      <%= f.label :username %>
+      <%= f.text_field :username, class: "form-control", style: "margin-right:10px;"  %>
+    </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-control", style: "margin-right:5px;" %>
+    </div>
 
-  <%= f.submit "Log in" %>
-<% end %>
+    <%= f.submit "Log in", class: "btn btn-sm btn-primary" %>
+  <% end %>
 
-<p>No account? <%= link_to "Register now", new_user_path %></p>
+  <br><p>No account? <%= link_to "Register now", new_user_path %></p>
+</div>

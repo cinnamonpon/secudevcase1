@@ -27,11 +27,15 @@ class CartController < ApplicationController
     @items = StoreItem.paginate(:page => params[:page])
     item = StoreItem.find(params[:item_id])
     quantity = params[:quantity].to_f ||= 1
-    begin
-      @cart.add(item, item.price, quantity)
-      flash.now[:success] = "Successfully added to cart."
-    rescue => e
-      flash.now[:danger] = "There was a problem adding to your cart. Try again."
+    if item.status == "In stock"
+      begin
+        @cart.add(item, item.price, quantity)
+        flash[:success] = "Successfully added to cart."
+      rescue => e
+        flash[:danger] = "There was a problem adding to your cart. Try again."
+      end
+    else
+      flash[:danger] = "Sorry, #{item.name} is out of stock."
     end
 
     redirect_to items_path
@@ -42,15 +46,14 @@ class CartController < ApplicationController
   end
 
   def item_remove
-    @cart
     @cart_items = @cart.cart_items
     quantity = Integer params[:quantity] rescue nil
-    success = @cart.remove(StoreItem.find params[:id], quantity+1) rescue nil
+    success = @cart.remove(StoreItem.find(params[:id]), quantity)
     if success
       flash[:success] = "Item removed from your cart."
-      render 'show'
+      redirect_to @cart
     else
-      flash[:danger] = "There was a problem updating your cart."
+      flash.now[:danger] = "There was a problem updating your cart."
       render 'edit'
     end
   end
@@ -81,8 +84,8 @@ class CartController < ApplicationController
       break if success == nil
 
       if success
-        flash.now[:success] = "Successfully updated cart."
-        render 'show'
+        flash[:success] = "Successfully updated cart."
+        redirect_to cart_path
       else
         flash[:danger] = "There was a problem updating your cart."
         render 'edit'

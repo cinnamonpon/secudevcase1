@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :backups, only: [:index, :create] do
     post 'download'
   end
+
   resources :donations, only: [:index, :show]
   post 'donate' => 'donations#donate'
   resources :orders
@@ -32,8 +33,7 @@ Rails.application.routes.draw do
     match '/items' => 'admin#index', via: :get
     match '/donations' => 'admin#index', via: :get
 
-    resources :store_items
-    resources :orders
+    resources :store_items, :path => 'items', :as => 'items'
   end
 
   get    'login'   => 'sessions#new'
