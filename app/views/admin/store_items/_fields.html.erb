@@ -44,7 +44,7 @@
   <%= f.group do %>
   <%= f.label " ", class: "col-lg-2 control-label" %>
     <%= f.input_group do %>
-      <%= f.cancel admin_path, item_path(f) %>
+      <%= f.cancel admin_path, item_path(f.object) %>
       <%= f.submit "Submit", class: "btn btn-primary" %>
     <% end %>
   <% end %>
