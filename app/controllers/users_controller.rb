@@ -32,12 +32,12 @@ class UsersController < ApplicationController
 
     @order_amount = 0
     @orders.each do |order|
-      @order_amount = order.amount + @order_amount
+      @order_amount += order.amount
     end
 
     @donation_amount = 0
-    @donations.each do |order|
-      @donation_amount = order.amount + @donation_amount
+    @donations.each do |donation|
+      @donation_amount += donation.amount
     end
  end
 
