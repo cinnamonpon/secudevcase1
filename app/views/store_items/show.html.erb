@@ -27,5 +27,29 @@
     <%= render 'shared/store_nav' %>
     <%= render 'shared/cart_panel' %>
   </div>
-  <% end %>
+</div>
+
+<div class="modal fade" id="post-modal" style="margin-top:10%;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="glyphicon glyphicon-remove"></i>
+        </button>
+        <h4 class="modal-title">Post to Global Messages Board</h4>
+      </div>
+      <div class="modal-body">
+        <%= custom_form(@post, html: {class: "form-horizontal", id: "post-form"}) do |f| %>
+          <%= f.group do %>
+            <%= f.text_area :content, size: "30x5", value: "Check this out #{request.original_url}"  %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= submit_tag "Post", class: "btn btn-primary", form: "post-form" %>
+      </div>
+
+    </div>
+  </div>
 </div>
