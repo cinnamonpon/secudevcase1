@@ -22,10 +22,12 @@
       <% concat content_tag(:span, " Share") %>
     <% end %>
   </div>
-  <div class="col-lg-4" style="padding-top:110px;">
-    <%= render 'shared/store_nav' %>
-    <%= render 'shared/cart_panel' %>
-  </div>
+  <% unless current_user.admin? %>
+    <div class="col-lg-4" style="padding-top:110px;">
+      <%= render 'shared/store_nav' %>
+      <%= render 'shared/cart_panel' %>
+    </div>
+  <% end %>
 </div>
 
 <div class="modal fade" id="post-modal" style="margin-top:10%;">
