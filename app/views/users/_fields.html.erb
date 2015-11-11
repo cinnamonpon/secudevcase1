@@ -72,7 +72,9 @@
   <%= f.group do %>
   <%= f.label " ", class: "col-lg-2 control-label" %>
     <%= f.input_group do %>
-      <%= f.cancel root_path, user_path(f.object) %>
+      <% if logged_in? %>
+        <%= f.cancel root_path, user_path(f.object) %>
+      <% end %>
       <%= f.submit "Submit", class: "btn btn-primary" %>
     <% end %>
   <% end %>
