@@ -5,7 +5,7 @@
       <div style="margin-top:15px;"><h4 class="list-group-item-heading"><%= store_item.name %></h4>
       <p class="list-group-item-text"><%= store_item.description %></p><br></div>
 
-      <%= form_tag(add_item_path, class: "form-inline") do %>
+      <%= form_tag(add_item_cart_path, class: "form-inline") do %>
           <%= hidden_field_tag :item_id, store_item.id %>
           <%= hidden_field_tag :quantity, 1 %>
 

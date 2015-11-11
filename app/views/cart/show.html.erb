@@ -34,7 +34,7 @@
       <th><%= @cart.total %></th>
     </tr>
     </table>
-    <%= link_to check_out_path, class: "btn btn-primary", style:"text-align:right;float:right;margin-top:-5px;margin-left:10px;" do %>
+    <%= link_to check_out_cart_path, class: "btn btn-primary", style:"text-align:right;float:right;margin-top:-5px;margin-left:10px;" do %>
     <i class="glyphicon glyphicon-shopping-cart"></i> Check out
     <% end %>
     <%= link_to edit_cart_path, class: "btn btn-primary", style:"text-align:right;float:right;margin-top:-5px;" do %>
