@@ -25,8 +25,8 @@ class OrdersController < ApplicationController
 
         @order.store_items.each_with_index do |s, i|
           if s.name.downcase.include?("donation")
-            amount = @order.store_items > 1 ? "mc_gross_#{i+1}" : "mc_gross"
-              @user.donations.build(amount: params[amount], notification_params: params, status: status, transaction_id: params[:txn_id], paid_at: Time.now, order_ref: @order.id).save
+            amount = @order.store_items.count > 1 ? "mc_gross_#{i+1}" : "mc_gross"
+              @user.donations.build(amount: params["#{amount}"], notification_params: params, status: status, transaction_id: params[:txn_id], paid_at: Time.now, order_ref: @order.id).save
           end
         end
 
