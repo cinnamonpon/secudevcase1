@@ -13,17 +13,16 @@ Rails.application.routes.draw do
 
   resources :donations, only: [:index, :show]
   post 'donate' => 'donations#donate'
-  resources :orders
+  resources :orders, only: [:index, :show, :update]
 
   scope 'store' do
-    post 'add_item' => 'cart#add_item'
     post 'hook'     => 'orders#hook'
-    post 'hook_donate' => 'donations#hook_donate'
-    get 'check_out' => 'cart#check_out'
-    resources :store_items, :path => 'items', :as => 'items'
-    resource :cart, :controller => 'cart' do
+    resources :store_items, :path => 'items', :as => 'items', only: [:index, :show]
+    resource :cart, :controller => 'cart', only: [:show, :edit, :update] do
       get 'clear'
+      get 'check_out'
       post 'item_remove'
+      post 'add_item'
     end
   end
 
@@ -33,7 +32,7 @@ Rails.application.routes.draw do
     match '/items' => 'admin#index', via: :get
     match '/donations' => 'admin#index', via: :get
 
-    resources :store_items, :path => 'items', :as => 'items'
+    resources :store_items, :path => 'items', :as => 'items', except: [:index, :show]
   end
 
   get    'login'   => 'sessions#new'
